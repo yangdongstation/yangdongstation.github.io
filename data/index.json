@@ -9,7 +9,7 @@
     "资源目录": "static",
     "网页图标文件名": "favicon.ico"
   },
-  "启用内建友人帐页面": false,
+  "启用内建友人帐页面": true,
   "友人帐页面附加信息": "\n\n",
   "友人帐来自json文件": true,
   "若友人帐来自json文件，则地址为": "https://raw.githubusercontent.com/yangdongstation/friends/main/friends.json",
@@ -21,7 +21,7 @@
       "图标": ""
     }
   ],
-  "友人帐页面允许评论": false,
+  "友人帐页面允许评论": true,
   "启用网站公告": false,
   "网站公告仅在首页显示": true,
   "网站公告": "",
@@ -104,15 +104,6 @@
   "底部信息（格式为markdown）": "©2021 DonzStory. All rights reserved.",
   "全站内容授权说明": "",
   "页面列表": [
-    {
-      "页面标题": "",
-      "是否显示在菜单中": true,
-      "若显示在菜单中，则在菜单中显示为": "",
-      "是否在新标签页打开": false,
-      "文件名": "KyYBT8Zhdpm3.md",
-      "这是一个完整的html": false,
-      "启用评论": false
-    },
     {
       "页面标题": "About Donz",
       "是否显示在菜单中": true,
