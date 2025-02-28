@@ -12,7 +12,7 @@
   "启用内建友人帐页面": true,
   "友人帐页面附加信息": "\n\n",
   "友人帐来自json文件": true,
-  "若友人帐来自json文件，则地址为": "https://fastly.jsdelivr.net/gh/yangdongstation/friends@master/main/friends.json",
+  "若友人帐来自json文件，则地址为": "https://fastly.jsdelivr.net/gh/yangdongstation/friends@master/friends.json",
   "友人帐": [
     {
       "名称": "",
