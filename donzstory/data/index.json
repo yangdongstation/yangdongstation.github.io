@@ -1,0 +1,291 @@
+{
+  "博客标题": "DonzStory",
+  "博客描述（副标题）": "Before I leave this world, Please let me tell my own story",
+  "网站语言": "English",
+  "在菜单中添加归档和标签的入口": true,
+  "在文章或页面的底部添加分享按钮，以便复制直链url": true,
+  "静态资源": {
+    "//": "有关静态资源的配置项**禁止**任何修改。",
+    "资源目录": "static",
+    "网页图标文件名": "favicon.ico"
+  },
+  "启用内建友人帐页面": true,
+  "友人帐页面附加信息": "\n\n",
+  "友人帐来自json文件": true,
+  "若友人帐来自json文件，则地址为": "https://cdn.jsdelivr.net/gh/yangdongstation/friends@master/friends.json",
+  "友人帐": [
+    {
+      "名称": "",
+      "链接": "",
+      "简介": "",
+      "图标": ""
+    }
+  ],
+  "友人帐页面允许评论": true,
+  "启用网站公告": false,
+  "网站公告仅在首页显示": true,
+  "网站公告": "",
+  "菜单中的外部链接": [],
+  "全局主题设置": {
+    "//": "颜色格式为十六进制颜色或HTML颜色名，如white、grey、#66ccff",
+    "是否使用第三方主题": false,
+    "若使用第三方主题，是否来自本地文件": false,
+    "若使用来自主题商店的第三方主题，则主题名为": "",
+    "若使用来自主题商店的第三方主题，则主题的更新发布日期为": "",
+    "第三方主题版本": "",
+    "第三方主题文件内容": [],
+    "标题栏背景颜色": "#0d6efd",
+    "标题栏文字颜色": "#ffffff",
+    "是否使用纯色背景（优先级高于背景图像）": false,
+    "若使用纯色背景，颜色为": "",
+    "是否使用背景图像": true,
+    "若使用背景图像，设置为": {
+      "//": "只能选用以下方案中的一种。",
+      "将网站根目录下的background.webp作为背景图像": false,
+      "将某个url作为背景图像": true,
+      "若将某个url作为背景图像，这个url是": "https://api.paugram.com/wallpaper/"
+    },
+    "禁用导航栏的阴影效果": false,
+    "链接颜色": "#0d6efd",
+    "是否启用live2d-widget": false,
+    "live2d-widget设置": {
+      "widget路径": "https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/",
+      "tips路径": "",
+      "api路径": "",
+      "功能设置": {
+        "hitokoto": true,
+        "asteroids": false,
+        "switch-model": false,
+        "switch-texture": false,
+        "photo": false,
+        "info": true,
+        "quit": true
+      }
+    }
+  },
+  "全局评论设置": {
+    "启用valine评论": true,
+    "valine设置": {
+      "leancloud_appid": "SykuVs4qcWMkl4RUtKEUlmog-gzGzoHsz",
+      "leancloud_appkey": "0jowkR4ct0lJbWcvocymEkKw",
+      "是否使用bbg公共评论服务": true,
+      "记录评论者ip": true,
+      "记录访问量": true,
+      "评论区占位符（提示文字）": "",
+      "评论者填写邮箱为qq邮箱时使用qq昵称和头像代替gravatar头像": true
+    },
+    "启用waline评论": false,
+    "waline设置": {
+      "serverurl": ""
+    },
+    "启用disqus评论": false,
+    "disqus设置": {
+      "shortname": ""
+    }
+  },
+  "一言设置": {
+    "//": "一言api来自hitokoto.cn",
+    "启用一言": true,
+    "范围设置": {
+      "范围包括动画分类下的一言": true,
+      "范围包括漫画分类下的一言": true,
+      "范围包括游戏分类下的一言": true,
+      "范围包括文学分类下的一言": true,
+      "范围包括原创分类下的一言": true,
+      "范围包括非原创分类下的一言": true,
+      "范围包括其他分类下的一言": true,
+      "范围包括影视分类下的一言": true,
+      "范围包括诗词分类下的一言": true,
+      "范围包括网易云分类下的一言（不建议）": false,
+      "范围包括哲学分类下的一言": true,
+      "范围包括抖机灵分类下的一言": true
+    }
+  },
+  "底部信息（格式为markdown）": "©2021 DonzStory. All rights reserved.",
+  "全站内容授权说明": "",
+  "页面列表": [
+    {
+      "页面标题": "About Donz",
+      "是否显示在菜单中": true,
+      "若显示在菜单中，则在菜单中显示为": "About Donz",
+      "是否在新标签页打开": false,
+      "文件名": "about.md",
+      "这是一个完整的html": false,
+      "启用评论": false
+    }
+  ],
+  "文章列表": [
+    {
+      "文章标题": "单维护者神话的背后",
+      "文件名": "BehindtheMythoftheSingleMaintainer.md",
+      "标签": [
+        "#tech"
+      ],
+      "摘要": "",
+      "创建时间（时间戳）": 1757745000000,
+      "修改时间（时间戳）": 1757745000000,
+      "是否置顶": false,
+      "是否隐藏": false,
+      "是否加密": false,
+      "启用评论": true
+    },
+    {
+      "文章标题": "为什么我后悔折腾 RISC-V？在 Debian 12 上用 QEMU 测试 Fastboot 的血泪史",
+      "文件名": "wcnmdRISC-V_I.md",
+      "标签": [
+        "#tech",
+        "#risc-v"
+      ],
+      "摘要": "",
+      "创建时间（时间戳）": 1756920420000,
+      "修改时间（时间戳）": 1756920420000,
+      "是否置顶": false,
+      "是否隐藏": false,
+      "是否加密": false,
+      "启用评论": true
+    },
+    {
+      "文章标题": "Traumgespräch",
+      "文件名": "Traumgespräch.md",
+      "标签": [
+        "Traumgespräch"
+      ],
+      "摘要": "",
+      "创建时间（时间戳）": 1748439780000,
+      "修改时间（时间戳）": 1748439780000,
+      "是否置顶": false,
+      "是否隐藏": false,
+      "是否加密": false,
+      "启用评论": true
+    },
+    {
+      "文章标题": "Out Of Reach",
+      "文件名": "PensieriOutOfReach.md",
+      "标签": [
+        "Pensieri",
+        "OutOfReach"
+      ],
+      "摘要": "",
+      "创建时间（时间戳）": 1740643260000,
+      "修改时间（时间戳）": 1740643260000,
+      "是否置顶": false,
+      "是否隐藏": false,
+      "是否加密": false,
+      "启用评论": true
+    },
+    {
+      "文章标题": "Summary in 2022, Outlook to 2023",
+      "文件名": "SummaryIn2022OutlookTo2023.md",
+      "标签": [
+        "Summary"
+      ],
+      "摘要": "Summary in 2022, Outlook to 2023",
+      "是否置顶": false,
+      "是否隐藏": false,
+      "启用评论": false,
+      "创建时间（时间戳）": 1672531200000,
+      "修改时间（时间戳）": 1672531200000,
+      "是否加密": true
+    },
+    {
+      "文章标题": "Before All",
+      "文件名": "BeforeALL.md",
+      "标签": [
+        "Preamble"
+      ],
+      "摘要": "Before All",
+      "是否置顶": false,
+      "是否隐藏": false,
+      "启用评论": true,
+      "创建时间（时间戳）": 1661212800000,
+      "修改时间（时间戳）": 1661299200000,
+      "是否加密": true
+    },
+    {
+      "文章标题": "Night",
+      "文件名": "Night.md",
+      "标签": [
+        "Night"
+      ],
+      "摘要": "",
+      "是否置顶": false,
+      "是否隐藏": false,
+      "启用评论": true,
+      "创建时间（时间戳）": 1661212800000,
+      "修改时间（时间戳）": 1661299200000,
+      "是否加密": true
+    },
+    {
+      "文章标题": "Dawn",
+      "文件名": "dawn.md",
+      "标签": [
+        "Dawn"
+      ],
+      "摘要": "",
+      "是否置顶": false,
+      "是否隐藏": false,
+      "启用评论": true,
+      "创建时间（时间戳）": 1661299200000,
+      "修改时间（时间戳）": 1661299200000,
+      "是否加密": true
+    },
+    {
+      "文章标题": "Polar Night I",
+      "文件名": "PolarNight-I.md",
+      "标签": [
+        "PolarNight"
+      ],
+      "摘要": "",
+      "是否置顶": false,
+      "是否隐藏": false,
+      "启用评论": true,
+      "创建时间（时间戳）": 1661299200000,
+      "修改时间（时间戳）": 1661385600000,
+      "是否加密": true
+    },
+    {
+      "文章标题": "Polar Night II",
+      "文件名": "PolarNight-II.md",
+      "标签": [
+        "PolarNight"
+      ],
+      "摘要": "",
+      "是否置顶": false,
+      "是否隐藏": false,
+      "启用评论": true,
+      "创建时间（时间戳）": 1661385600000,
+      "修改时间（时间戳）": 1661385600000,
+      "是否加密": true
+    }
+  ],
+  "CDN选择": 1,
+  "CDN路径": "https://unpkg.com",
+  "启用自定义CSS": false,
+  "启用自定义JS": true,
+  "自定义CSS": "",
+  "自定义JS": "<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{\"token\": \"738b0b7ab4d04b9aabfc63ccfe92276e\"}'></script><!-- End Cloudflare Web Analytics -->",
+  "文章列表中每页的文章数为": "10",
+  "全站内容授权协议": "reserved",
+  "不使用全站内容授权协议": false,
+  "文章页面显示上一篇下一篇文章导航按钮": true,
+  "提供文章文件下载": false,
+  "提供复制全文到剪贴板的选项": false,
+  "网站域名（包括https://）": "https://d0n2.in",
+  "在对文章列表进行修改后触发rss生成": true,
+  "在对文章或页面列表进行修改后触发sitemap.txt生成": true,
+  "博客程序版本（禁止修改此值，否则会导致跨版本升级异常）": 20250204,
+  "提高JSON文件的可读性": true,
+  "搜索按钮边框颜色设置为暗色": false,
+  "使版心宽度更窄（提高左右页边距）": true,
+  "优先使用衬线字体": false,
+  "Markdown渲染配置": {
+    "使用markdown文件所在目录作为baseurl": true,
+    "在用户点击图片时显示图片查看器": true,
+    "根据用户屏幕尺寸渲染图片尺寸": true
+  },
+  "自定义界面文本": {
+    "启用": false,
+    "列表": []
+  },
+  "站点主题": "Miracle"
+}

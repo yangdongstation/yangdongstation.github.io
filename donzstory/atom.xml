@@ -1,0 +1,327 @@
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>DonzStory</title>
+    <subtitle>Before I leave this world, Please let me tell my own story</subtitle>
+    <link href="https://d0n2.in/atom.xml" rel="self"/>
+    <link href="https://d0n2.in"/>
+    <updated>2025-09-17T08:22:41.861Z</updated>
+    <id>https://d0n2.in</id>
+    <author>
+        <name>DonzStory</name>
+    </author>
+    <generator uri="https://bbg.nekomoe.xyz">Baiyuanneko's Blog Generator</generator>
+    <entry>
+      <title>单维护者神话的背后</title>
+      <link href="https://d0n2.in/index.html?type=article&amp;filename=BehindtheMythoftheSingleMaintainer.md"/>
+      <id>https://d0n2.in/index.html?type=article&amp;filename=BehindtheMythoftheSingleMaintainer.md</id>
+      <content type="html">
+        <![CDATA[
+          <p>——对《Open Source is one person》一文的冷思考</p>
+<p>一、引言：一篇点燃焦虑的博文</p>
+<p>2025 年 8 月，《Open Source is one person》以夺人眼球的标题和“700 万单维护者项目”的数据横扫社交媒体。作者宣称：“整个该死的星球都在运行由一个人编写的软件”，呼吁把安全焦虑从“开发者国籍”转向“单人维护”。这篇分析文章旨在剥离其情绪修辞，检验数据可靠性，并将“单维护者”现象置于更宏观的开源经济图景中审视。</p>
+<p>二、数据溯源：看上去很大的数字</p>
+<p>• ecosyste.ms 实时计数：约 1180 万个项目，其中 700 万在 package.json 仅列一名“maintainer”——看似铁证。</p>
+<p>• 统计口径陷阱：该字段表示拥有发布令牌的人，而非实际写代码的群体；与 GitHub “contributors” 列表平均相差 4–5 倍。</p>
+<p>• 样本污染：NPM 官方承认 30% 新包为垃圾或恶意，伪造维护者身份只需一个邮箱。把“僵尸 + 垃圾”算进分母，单维护者比例被人为放大。</p>
+<p>校正结果（GitHub 活跃项目抽样 + NPM 活跃包）：</p>
+<p>• 单维护者项目≈ 1/4（不再是 6/10）；</p>
+<p>• 但真正占全球下载量 &amp;lt;10%（lodash、react、tensorflow 等重型依赖均为多贡献者）。</p>
+<p>结论：数字很大，影响权重并不大，“700 万”更像统计遗物而非生态真相。</p>
+<p>三、逻辑检视：三大以偏概全</p>
+<ol>
+<li>生态以偏概全
+NPM 的“微包”文化（一行函数即包）天然适合单人；Python、Rust、Maven 等多以团队或企业背书，单维护者占比 &amp;lt;20%。</li>
+<li>重要性以偏概全
+文章把“项目数”等同于“关键性”。GitHub TOP 5000 仓库中位贡献者 8–12 人；OpenSSL、curl、Kubernetes 等基础设施均 &amp;gt;100 人。</li>
+<li>风险归因以偏概全
+将供应链风险简化为“人数 = 0/1”：
+ ◦ SolarWinds、3CX、XcodeGhost 等史上最大供应链攻击全部发生在多贡献者项目；
+ ◦ 漏洞密度与代码审计、CI 安全、密钥管理更相关，而非维护者计数单一维度。
+四、地缘政治语境：忽略“攻击者视角”
+• 2025 年 CISA 威胁评估继续把特定国家列为网络行为体；
+• 美国 EO 14028、欧盟 CRA 均要求披露软件地理来源与维护者身份；
+• 对国防部而言，“代码可审计”≠“已审计”，引入外国个人维护的高危包仍属合规红灯。
+文章把媒体对此类风险的报道贬为“民族主义打人”，淡化了地缘博弈中真实的攻击面。
+五、经济视角：为什么“一个人”会存在？</li>
+<li>礼品经济激励
+早期互联网“声誉回报”足以支付个人成本，于是出现“一行函数一包”的极致分工。</li>
+<li>平台激励扭曲
+NPM 下载计数与 GitHub Stars 成为简历货币，数量&amp;gt;质量刺激微包膨胀。</li>
+<li>企业“免费搭车”
+财富 500 强公司 78% 代码库含 NPM 依赖，却仅 3% 回馈资金（GitHub OSPO Survey 2024）。当礼品经济枯竭，单人项目自然沦为弃包或恶意注入温床。
+六、已有解药：从呐喊到工程化<table>
+<thead>
+<tr>
+<th>工具 / 机制</th>
+<th>针对痛点</th>
+<th>现状</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>OpenSSF Scorecard</td>
+<td>自动评估项目安全实践</td>
+<td>被 Google Cloud、IBM 纳入白名单门槛</td>
+</tr>
+<tr>
+<td>GitHub Sponsors &amp;amp; Tidelift</td>
+<td>为维护者提供可持续收入</td>
+<td>2024 年支付总额 &amp;gt; 1.3 亿美元，但受资助包占比仍 &amp;lt;5%</td>
+</tr>
+<tr>
+<td>CRA“双维护者”条款</td>
+<td>降低单点失效</td>
+<td>2025 起欧盟市场强制，推动 12% 项目新增备份维护者</td>
+</tr>
+<tr>
+<td>企业 OSPO</td>
+<td>内部治理与上游投资</td>
+<td>财富 100 强已有 30 家设立，目标 2026 覆盖 50%</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<p>核心矛盾不在“是否单人”，而在“是否被无偿透支”。把单人现象视为结构性牺牲品，而非道德高地，才能制定有效干预。</p>
+<p>七、结论：让数字回归数字，让问题回到问题
+• 单维护者确实存在，但主要集中于低活跃、低影响长尾；</p>
+<p>• 高影响开源已高度协作化，继续用“700 万”恐吓决策者会稀释真正需要资源的领域；</p>
+<p>• 风险是系统性的——审计缺失、企业白嫖、平台激励失衡、地缘攻击——绝非“一个人”所能概括；</p>
+<p>• 解法也是系统性的：Scorecard 式工程度量、CRA 式法规、Sponsors 式市场激励、OSPO 式企业责任。</p>
+<p>下次再听到“整个星球靠一个人”时，不妨先问：
+• 这是 700 万行垃圾里的一个计数，还是 70 亿次下载中的一个关键路径？</p>
+<p>• 把资源投向单维护者高影响包，还是继续让礼品经济自生自灭？
+回答对了，单维护者神话才会失去市场——开源安全也才能真正从口号走向工程。</p>
+
+
+        ]]>
+      </content>
+      <summary type="html"></summary>
+      <updated>2025-09-13T06:30:00.000Z</updated>
+      <published>2025-09-13T06:30:00.000Z</published>
+      </entry><entry>
+      <title>为什么我后悔折腾 RISC-V？在 Debian 12 上用 QEMU 测试 Fastboot 的血泪史</title>
+      <link href="https://d0n2.in/index.html?type=article&amp;filename=wcnmdRISC-V_I.md"/>
+      <id>https://d0n2.in/index.html?type=article&amp;filename=wcnmdRISC-V_I.md</id>
+      <content type="html">
+        <![CDATA[
+          <h1>为什么我后悔折腾 RISC-V？在 Debian 12 上用 QEMU 测试 Fastboot 的血泪史</h1>
+<p>哎呀，大家好，我是那个自以为聪明，结果把自己坑进 RISC-V 泥潭的傻瓜博主。今天，我来给大家分享一个“简单”的教程：怎么在 Debian 12 上用 QEMU 搭个 RISC-V 虚拟机，然后测试 fastboot。听起来高大上，对吧？开源硬件的未来，Android 开发神器！但现实是，我花了几天时间调试各种莫名其妙的错误，现在回想起来，只想说：谁让我手贱，非要折腾这个玩意儿？Intel 和 ARM 不香吗？非得去追这个“新兴架构”，结果编译 U-Boot 的时候差点砸键盘。</p>
+<p>如果你也像我一样，被 RISC-V 的“自由开源”宣传忽悠了，想在虚拟机里玩玩 fastboot 测试固件烧录，那欢迎加入后悔俱乐部。但既然我已经趟过雷了，就把这个血泪流程分享出来，省得你重蹈覆辙。记住，语气会欠揍点，因为我现在还气呢——早知道直接买个 ARM 板子多好。</p>
+<h2>前置：为什么我后悔？</h2>
+<p>RISC-V 听起来酷炫，但 Debian 12 的支持就是个半成品。仓库里 U-Boot 默认没 fastboot，debootstrap 源天天变，编译还碰上 SWIG、LTO、binman 一堆 bug。内存不够？CPU 不够？网络慢？随便一个都能让你崩溃。我本想测试 Android fastboot，结果成了 Linux 调试大赛。如果你是新手，建议先深呼吸三次，再继续。</p>
+<p>系统要求：Debian 12 (amd64)，root 权限，8GB+ 内存，耐心无限。工具一键装：</p>
+<pre><code>sudo apt update &amp;amp;&amp;amp; sudo apt install -y qemu-system-misc qemu-utils u-boot-qemu opensbi git debootstrap device-tree-compiler gcc-riscv64-linux-gnu g++-riscv64-linux-gnu build-essential bc bison flex libssl-dev android-sdk-platform-tools-common libncurses-dev python3 swig uuid-dev libgnutls28-dev
+</code></pre>
+<p>没装全？别问我为什么这么多——因为 RISC-V 就是爱折腾。</p>
+<h2>步骤 1: 做个磁盘镜像，简单吧？（呵呵）</h2>
+<p>先造个 4GB raw 镜像，当成虚拟硬盘。以为 dd 就完事？格式化后还得挂载。</p>
+<pre><code>dd if=/dev/zero of=riscv-disk.img bs=1M count=4096
+sudo mkfs.ext4 -F riscv-disk.img
+sudo mkdir -p /mnt/riscv-root
+sudo mount -o loop riscv-disk.img /mnt/riscv-root
+</code></pre>
+<p>轻松吧？等等，后面 debootstrap 会让你知道什么是“源不兼容”。</p>
+<h2>步骤 2: debootstrap 根文件系统——源头之痛</h2>
+<p>RISC-V 的包藏在 unstable 分支，官方源慢？用清华 TUNA！但路径天天变，我试了 debian-ports、sid、unstable，一堆 E: Failed getting release file。
+最终方案：</p>
+<pre><code>sudo debootstrap --arch=riscv64 --no-check-gpg unstable /mnt/riscv-root https://mirrors.tuna.tsinghua.edu.cn/debian
+</code></pre>
+<p>然后 chroot 配置：</p>
+<pre><code>sudo chroot /mnt/riscv-root /bin/bash
+cat &amp;gt;/etc/apt/sources.list &amp;lt;&amp;lt;&amp;#39;EOF&amp;#39;
+deb https://mirrors.tuna.tsinghua.edu.cn/debian unstable main
+deb https://mirrors.tuna.tsinghua.edu.cn/debian unreleased main
+EOF
+apt update
+apt install -y openssh-server udev fastboot systemd
+passwd -d root  # 空密码，懒得输
+exit
+sudo umount /mnt/riscv-root
+</code></pre>
+<p>过程中报 /proc 未挂载？忽略！chroot 就是爱闹腾。为什么后悔？因为 ARM 的 rootfs 一键下载，RISC-V 得自己造。</p>
+<h2>步骤 3: 编译 U-Boot——地狱开始</h2>
+<p>Debian 自带的 U-Boot 没 fastboot 命令，Unknown command 直接气死你。所以，自编！</p>
+<pre><code>git clone --depth 1 -b v2024.01 https://github.com/u-boot/u-boot.git
+cd u-boot
+make CROSS_COMPILE=riscv64-linux-gnu- qemu-riscv64_defconfig
+cat &amp;gt;&amp;gt;.config &amp;lt;&amp;lt;EOF
+CONFIG_CMD_FASTBOOT=y
+CONFIG_USB_GADGET=y
+CONFIG_USB_GADGET_DOWNLOAD=y
+CONFIG_USB_GADGET_VENDOR_NUM=0x18d1
+CONFIG_USB_GADGET_PRODUCT_NUM=0xd00d
+CONFIG_USB_GADGET_DUALSPEED=y
+CONFIG_USB_ETHER=y
+CONFIG_USB_ETH_CDC=y
+CONFIG_FASTBOOT_BUF_ADDR=0x81000000
+CONFIG_FASTBOOT_BUF_SIZE=0x08000000
+CONFIG_FASTBOOT_FLASH=y
+CONFIG_FASTBOOT_FLASH_MMC_DEV=0
+CONFIG_FASTBOOT_UDP=y
+EOF
+yes &amp;quot;&amp;quot; | make oldconfig
+./scripts/config --disable CONFIG_PYLIBFDT --disable CONFIG_BINMAN --disable CONFIG_LTO
+sed -i &amp;#39;/^subdir-y.*pylibfdt/d&amp;#39; scripts/dtc/Makefile
+echo &amp;#39;#!/bin/bash&amp;#39; &amp;gt; tools/binman/binman &amp;amp;&amp;amp; chmod +x tools/binman/binman
+make CROSS_COMPILE=riscv64-linux-gnu- -j$(nproc)
+cp u-boot.bin ~/u-boot-fastboot.bin
+cd ~
+</code></pre>
+<p>为什么这么多 hack？因为 pylibfdt SWIG 报错、LTO uleb128 不支持、binman ModuleNotFound——每个都让我想删代码。为什么后悔？因为在 ARM 上，U-Boot 仓库版就带 fastboot！</p>
+<h2>步骤 4: QEMU 启动脚本——端口坑在等你</h2>
+<p>保存为 run-qemu.sh：</p>
+<pre><code>cat &amp;gt;run-qemu.sh &amp;lt;&amp;lt;&amp;#39;EOF&amp;#39;
+#!/bin/bash
+exec qemu-system-riscv64 \
+  -machine virt \
+  -cpu rv64 \
+  -smp 4 -m 2G \
+  -bios /usr/lib/riscv64-linux-gnu/opensbi/generic/fw_jump.bin \
+  -kernel ~/u-boot-fastboot.bin \
+  -drive file=riscv-disk.img,format=raw,id=hd0 \
+  -device virtio-blk-device,drive=hd0 \
+  -netdev user,id=net0,hostfwd=tcp::5555-:5555 \
+  -device virtio-net-device,netdev=net0 \
+  -nographic
+EOF
+chmod +x run-qemu.sh
+./run-qemu.sh
+</code></pre>
+<p>卡死？按回车！TFTP 循环？Ctrl-C！端口占用？<code>sudo lsof -i :5555</code> 杀进程，或改 6666。</p>
+<h2>步骤 5: 终于测试 fastboot——值吗？</h2>
+<p>U-Boot 里：</p>
+<pre><code>=&amp;gt; fastboot udp 0
+</code></pre>
+<p>另终端：</p>
+<pre><code>fastboot -s udp 127.0.0.1:5555 devices  # 看到设备？恭喜，你没白折腾
+fastboot flash userdata your.img
+fastboot reboot
+</code></pre>
+<p>成功了？别高兴太早，磁盘没分区，flash 会报错。补 fdisk 吧。</p>
+<h2>常见坑：为什么 RISC-V 让我后悔</h2>
+<ul>
+<li><strong>源错误</strong>：debian-ports 没了，sid/unstable 变来变去，用 TUNA + --no-check-gpg。</li>
+<li><strong>U-Boot 命令缺失</strong>：仓库版废物，必须自编。</li>
+<li><strong>编译地狱</strong>：SWIG too few arguments，uleb128 not supported，No module named &amp;#39;_libfdt&amp;#39;——每个都让我想放弃。</li>
+<li><strong>QEMU 卡死</strong>：-nographic 爱黑屏，加 -serial mon:stdio 试试。</li>
+<li><strong>端口</strong>：5555 被占？杀进程，或改脚本。为什么后悔？因为 ARM QEMU 一键起飞。</li>
+<li><strong>整体</strong>：RISC-V 支持太碎，Debian 12 半成品，时间成本高。</li>
+</ul>
+<h2>结语：后悔，但还是分享了</h2>
+<p>折腾 RISC-V 让我明白：新兴东西别急着追，除非你爱 debug。Intel/ARM 稳定多了，下次我绝对不碰！但如果你非要试，上面流程能救你一命。欢迎评论你的坑，我来陪你哭。为什么欠揍？因为我明明知道会坑，还去试——自作孽，不可活。</p>
+<p>（完）<br>日期：2025 年 9 月 4 日</p>
+
+
+        ]]>
+      </content>
+      <summary type="html"></summary>
+      <updated>2025-09-03T17:27:00.000Z</updated>
+      <published>2025-09-03T17:27:00.000Z</published>
+      </entry><entry>
+      <title>Traumgespräch</title>
+      <link href="https://d0n2.in/index.html?type=article&amp;filename=Traumgespräch.md"/>
+      <id>https://d0n2.in/index.html?type=article&amp;filename=Traumgespräch.md</id>
+      <content type="html">
+        <![CDATA[
+          <p>I am deeply envious of everyone here because I have no talent. Unlike all of you—you who are talented, who have pursuits, who have dreams—I have no talent at all. In every way, I am inferior to others; I have no dreams. I merely pretend to be competent in certain areas, but a counterfeit is ultimately a counterfeit; it can never become the real thing. I may have told you that some people are fools, but that&amp;#39;s because I believe you shouldn&amp;#39;t waste your own talents and abilities. This is merely the envy and jealousy of a loser toward those who are capable. A capable person shouldn&amp;#39;t abandon their own strengths; if you see them as a burden, isn&amp;#39;t that too extravagant? You simply don&amp;#39;t understand how empty life is without bearing any expectations!</p>
+
+
+        ]]>
+      </content>
+      <summary type="html"></summary>
+      <updated>2025-05-28T13:43:00.000Z</updated>
+      <published>2025-05-28T13:43:00.000Z</published>
+      </entry><entry>
+      <title>Out Of Reach</title>
+      <link href="https://d0n2.in/index.html?type=article&amp;filename=PensieriOutOfReach.md"/>
+      <id>https://d0n2.in/index.html?type=article&amp;filename=PensieriOutOfReach.md</id>
+      <content type="html">
+        <![CDATA[
+          <p><strong>OutOfReach</strong>  </p>
+<p>So, you all are truly remarkable.<br>Perhaps they are peaks I may never reach in my lifetime.<br>As a mere &amp;quot;exam-taker,&amp;quot; what qualifications do I have to be mentioned in the same breath as you?<br>I can only sit daily at the bottom of my dim, damp, and deep well. Then, I look up at you shining stars in the sky.<br>Those are the boundless seas and skies I yearn for in my heart but can never touch.<br>Chairman Mao once said, &amp;quot;Our journey is to the stars and seas.&amp;quot; But you are the dazzling stars on the horizon. As for me, someone like me, a creature of the dark and damp, can only sit at the bottom of the well. To reach even the edge of your brilliance, I&amp;#39;d need to cross the entire Milky Way.<br>Yet, this is beyond my reach.<br><img src="https://fastly.jsdelivr.net/gh/yangdongstation/picd0n2@master/OutOfReach1.png" alt="out of reach"></p>
+<p>There&amp;#39;s this image: you are the tip of the pyramid, while I am at the base. No matter how fiercely I compete, no matter how many ladders I raise to climb upward, I can only reach the edge of a cliff. One step forward, and I&amp;#39;d shatter into pieces.<br>After a lifetime of striving, I realize that those who once shared a table with me are unattainable. Even after climbing countless mountains, crossing vast oceans, and exhausting myself in cutthroat competition, I still can&amp;#39;t catch a glimpse of their shadows. As a child, I thought I could reach for the moon in the heavens. Now I know that even if I ascended to the heavens, I couldn&amp;#39;t touch the moon&amp;#39;s edge—only gaze in vain, mocking my own futile arrogance like a mayfly shaking a great tree.<br>Your achievements make me look up in awe, unattainable as high mountains. My efforts are like the bird Jingwei trying to fill the sea—unless aided by immortals, they&amp;#39;re doomed like Kuafu chasing the sun, destined to vanish in the crowd… My endeavors are like ants trying to shake trees… My &amp;quot;Yu Gong&amp;quot; (Foolish Old Man) efforts… Unless a Hercules assists, they&amp;#39;ll be seen as the madness of a lunatic. All my toil is but futile, wasted labor.<br>The achievements I pursue are but illusory reflections in water or flowers in a mirror. Like a drug-addled German Third Reich officer, who thinks he can stay awake for three days straight, feeling omnipotent—only a hallucination of morphine and heroin before the final flicker of life, a castle in the air.<br>Like in <em>The Kite Runner</em>, after Hassan and Amir finished playing, Amir returned to his palace, while Hassan went back to his thatched hut—they were never of the same world. Tragically, I&amp;#39;m not even as fortunate as Hassan. I have no hut to return to, no safe harbor… So I envy everyone.  </p>
+<p>Alright… I&amp;#39;ll go make my futile efforts, to feel like I&amp;#39;m doing something real instead of chasing illusory dreams. Sometimes we numb ourselves—whether life is unsatisfying, days are too hard, or family traumas linger—using smoke, alcohol, dexmedetomidine, or pregabalin. It doesn&amp;#39;t matter; what I do… is just like these things, a way to detach from reality, to stop feeling so unfulfilled.</p>
+
+
+        ]]>
+      </content>
+      <summary type="html"></summary>
+      <updated>2025-02-27T08:01:00.000Z</updated>
+      <published>2025-02-27T08:01:00.000Z</published>
+      </entry><entry>
+      <title>Summary in 2022, Outlook to 2023</title>
+      <link href="https://d0n2.in/index.html?type=article&amp;filename=SummaryIn2022OutlookTo2023.md"/>
+      <id>https://d0n2.in/index.html?type=article&amp;filename=SummaryIn2022OutlookTo2023.md</id>
+      <content type="html">
+        <![CDATA[
+          Summary in 2022, Outlook to 2023
+
+        ]]>
+      </content>
+      <summary type="html">Summary in 2022, Outlook to 2023</summary>
+      <updated>2023-01-01T00:00:00.000Z</updated>
+      <published>2023-01-01T00:00:00.000Z</published>
+      </entry><entry>
+      <title>Before All</title>
+      <link href="https://d0n2.in/index.html?type=article&amp;filename=BeforeALL.md"/>
+      <id>https://d0n2.in/index.html?type=article&amp;filename=BeforeALL.md</id>
+      <content type="html">
+        <![CDATA[
+          Before All
+
+        ]]>
+      </content>
+      <summary type="html">Before All</summary>
+      <updated>2022-08-24T00:00:00.000Z</updated>
+      <published>2022-08-23T00:00:00.000Z</published>
+      </entry><entry>
+      <title>Night</title>
+      <link href="https://d0n2.in/index.html?type=article&amp;filename=Night.md"/>
+      <id>https://d0n2.in/index.html?type=article&amp;filename=Night.md</id>
+      <content type="html">
+        <![CDATA[
+          
+
+        ]]>
+      </content>
+      <summary type="html"></summary>
+      <updated>2022-08-24T00:00:00.000Z</updated>
+      <published>2022-08-23T00:00:00.000Z</published>
+      </entry><entry>
+      <title>Dawn</title>
+      <link href="https://d0n2.in/index.html?type=article&amp;filename=dawn.md"/>
+      <id>https://d0n2.in/index.html?type=article&amp;filename=dawn.md</id>
+      <content type="html">
+        <![CDATA[
+          
+
+        ]]>
+      </content>
+      <summary type="html"></summary>
+      <updated>2022-08-24T00:00:00.000Z</updated>
+      <published>2022-08-24T00:00:00.000Z</published>
+      </entry><entry>
+      <title>Polar Night I</title>
+      <link href="https://d0n2.in/index.html?type=article&amp;filename=PolarNight-I.md"/>
+      <id>https://d0n2.in/index.html?type=article&amp;filename=PolarNight-I.md</id>
+      <content type="html">
+        <![CDATA[
+          
+
+        ]]>
+      </content>
+      <summary type="html"></summary>
+      <updated>2022-08-25T00:00:00.000Z</updated>
+      <published>2022-08-24T00:00:00.000Z</published>
+      </entry><entry>
+      <title>Polar Night II</title>
+      <link href="https://d0n2.in/index.html?type=article&amp;filename=PolarNight-II.md"/>
+      <id>https://d0n2.in/index.html?type=article&amp;filename=PolarNight-II.md</id>
+      <content type="html">
+        <![CDATA[
+          
+
+        ]]>
+      </content>
+      <summary type="html"></summary>
+      <updated>2022-08-25T00:00:00.000Z</updated>
+      <published>2022-08-25T00:00:00.000Z</published>
+      </entry></feed>
