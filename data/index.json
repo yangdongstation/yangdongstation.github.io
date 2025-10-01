@@ -116,6 +116,20 @@
   ],
   "文章列表": [
     {
+      "文章标题": "The power of communication from xhmt’s exgirlfriend",
+      "文件名": "xhmtsexgirlfriend.md",
+      "标签": [
+        "Mumbling,communication"
+      ],
+      "摘要": "",
+      "创建时间（时间戳）": 1759330260000,
+      "修改时间（时间戳）": 1759330260000,
+      "是否置顶": false,
+      "是否隐藏": false,
+      "是否加密": false,
+      "启用评论": true
+    },
+    {
       "文章标题": "单维护者神话的背后",
       "文件名": "BehindtheMythoftheSingleMaintainer.md",
       "标签": [
