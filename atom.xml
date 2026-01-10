@@ -3,13 +3,63 @@
     <subtitle>Before I leave this world, Please let me tell my own story</subtitle>
     <link href="https://d0n2.in/atom.xml" rel="self"/>
     <link href="https://d0n2.in"/>
-    <updated>2025-10-01T14:55:41.912Z</updated>
+    <updated>2026-01-10T12:13:05.791Z</updated>
     <id>https://d0n2.in</id>
     <author>
         <name>DonzStory</name>
     </author>
     <generator uri="https://bbg.nekomoe.xyz">Baiyuanneko's Blog Generator</generator>
     <entry>
+      <title>Damn Compatibility Paradox</title>
+      <link href="https://d0n2.in/index.html?type=article&amp;filename=DamnCompatibilityParadox.md"/>
+      <id>https://d0n2.in/index.html?type=article&amp;filename=DamnCompatibilityParadox.md</id>
+      <content type="html">
+        <![CDATA[
+          <p>sparc是被时代淘汰的古董设计没留余量依托；x86是上世纪的兼容垃圾，为了兼容无所不用其极，AMD64曾救过他，但是AVX512把它变成了摇摇欲坠的屎山；arm是上世纪老旧思想创造的古董，除了相对成熟，设计思路依然老旧，你看看你的分页模式…；RISCV是这个世纪初不成熟的梦想，虽然思路先进，但是不成熟，十几年了，还像一个长不大也不想长大的的孩子一样，碎了一地，还没有人给他拼拼凑凑…；PowerPC是古代的圣遗物，完全进了棺材，但是还在喘气，这东西就应该死在apple不爱他那天，现在还活着就是因为有人喜欢自嗨；MIPS是复杂又低能的象征，你看看这个专利枷锁和编码效率…群友说是圣遗物；IA64是工程能力没有达到，但思想过于先进的脱节产品，现在而言，超前了10年…；IBM Z，这个为了兼容而舍弃部分性能，还贼几把大的东西，我想不明白，为什么有人在今年要兼容60年代的东西…我看要是没有30年的保修，没人用这个玩意儿</p>
+<p>我说现在的操作系统都是杂种…架构的纯粹性，完全是一个伪命题…我出生在2009年，但是我需要给这一坨玩意儿，60年代90年代00年代的技术债还债！</p>
+
+
+        ]]>
+      </content>
+      <summary type="html"></summary>
+      <updated>2026-01-10T12:08:00.000Z</updated>
+      <published>2026-01-10T12:08:00.000Z</published>
+      </entry><entry>
+      <title>Summary in 2025, Outlook to 2026</title>
+      <link href="https://d0n2.in/index.html?type=article&amp;filename=SummaryIn2025OutlookTo2026.md"/>
+      <id>https://d0n2.in/index.html?type=article&amp;filename=SummaryIn2025OutlookTo2026.md</id>
+      <content type="html">
+        <![CDATA[
+          <p>I may not regret the decisions I&amp;#39;ve made, but I absolutely regret all the ways I ran away before. I hope it&amp;#39;s not too late yet.</p>
+<p>The afterglow is like a cup of orange water, warmed just right and lightly poured into the wind chimes by the window. The wind knocked over sunlight&amp;#39;s wine glass, and the warm yellow fragrance suddenly spilled throughout the room. It seems the intermittent separations these past few years were mere scenes from a dream. But the visions from dreams and fantasies slowly drew nearer, nearer, nearer, until finally, they merged with me—I ultimately chose to become the cat I&amp;#39;d always dreamed of being.</p>
+<p>Yes, that self which previously existed only in daydreams... I&amp;#39;d never hidden my inclinations, but... I&amp;#39;d always been intimidated by countless pressures, too scared to take a single step forward. I hated the me who kept retreating... Yet it wasn&amp;#39;t until there was nowhere left to retreat that I finally decided to move forward.</p>
+<p>I wanted to grow stronger, to work on compilers, to run mirror stations, to become a very capable cat—an outstanding cat in my age group! So I picked up the ideapad I&amp;#39;d bought for 200 yuan... and began writing code line by line.</p>
+<p>Buying servers, asking teachers for retired hard drives, recruiting people—step by step, I tried to bootstrap my own community... Thankfully... I&amp;#39;ve never lacked people by my side. There&amp;#39;s always someone standing with me. They may not share my workload... but someone will definitely reach out when I&amp;#39;m lost and pull me back up.</p>
+<p>Even when I&amp;#39;ve gone astray, those around me never scold me or say how terrible I am; she, they only reach out to pull me up, then draw me into their embrace... &amp;quot;It&amp;#39;s okay, cat. You&amp;#39;ve worked hard enough. You&amp;#39;ve learned plenty.&amp;quot;</p>
+<p>This year I met many incredibly capable friends, reliable teammates, and amazing mentors. My friends span every corner of the world, every profession and industry—so wonderful, cat is so happy!</p>
+<p>But... more often...</p>
+<p>The budget is as thin as an expired student coupon, the servers as ancient as relics from a past age, the task queue as long as an army of thousands... Your jobs and mine are all pending... pending until even the logs learned to sigh.</p>
+<p>Time, time, time—so crucial. I lost the days when I could play freely. I missed my youth... missed my prime... Time waits for no one.</p>
+<p>Powerless, powerless, powerless—there&amp;#39;s so little I can do. If I can never become that cute yet powerful reflection from my dreams, at least... perhaps I can become a better version of myself.</p>
+<p>So nervous... So many things, all cliffs that allow no missteps—studies, family, money, independence. Ugh, just thinking about it leaves me breathless... One wrong step, and maybe... not necessarily death, though that&amp;#39;s possible, but certainly something worse than death.</p>
+<p>My sister told me, out of her own selfishness, that she hopes I can be happy every day.
+...Sorry, failing even at this, I&amp;#39;m not a competent younger sister, am I...</p>
+<p>Sigh... So many people so important to me remain forever in 2025... I feel like joining them in leaving... sigh...</p>
+<p>Yes, I know, everyone has their own difficulties.
+But... let&amp;#39;s hold on...
+Sigh...</p>
+<p>Ugh... crying again, I&amp;#39;m so pathetic... Tilting my head back to keep the tears from falling...</p>
+<p>I see a brilliant starry sky... ugh...
+So many more stars in the sky now... I miss you all...</p>
+<p>But out of personal selfishness, I truly don&amp;#39;t want more people to leave me in that way...</p>
+
+
+        ]]>
+      </content>
+      <summary type="html">Summary in 2025, Outlook to 2026</summary>
+      <updated>2026-01-10T12:01:00.000Z</updated>
+      <published>2026-01-10T12:01:00.000Z</published>
+      </entry><entry>
       <title>The power of communication from xhmt’s exgirlfriend</title>
       <link href="https://d0n2.in/index.html?type=article&amp;filename=xhmtsexgirlfriend.md"/>
       <id>https://d0n2.in/index.html?type=article&amp;filename=xhmtsexgirlfriend.md</id>
