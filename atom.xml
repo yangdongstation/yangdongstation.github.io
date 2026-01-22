@@ -3,13 +3,178 @@
     <subtitle>Before I leave this world, Please let me tell my own story</subtitle>
     <link href="https://d0n2.in/atom.xml" rel="self"/>
     <link href="https://d0n2.in"/>
-    <updated>2026-01-10T12:13:05.791Z</updated>
+    <updated>2026-01-22T05:31:08.099Z</updated>
     <id>https://d0n2.in</id>
     <author>
         <name>DonzStory</name>
     </author>
     <generator uri="https://bbg.nekomoe.xyz">Baiyuanneko's Blog Generator</generator>
     <entry>
+      <title>Dancing on the Physical Edge: A Minimalist Virtualization Experiment in RISC-V M-Mode</title>
+      <link href="https://d0n2.in/index.html?type=article&amp;filename=DancingOnThePhysicalEdge.md"/>
+      <id>https://d0n2.in/index.html?type=article&amp;filename=DancingOnThePhysicalEdge.md</id>
+      <content type="html">
+        <![CDATA[
+          <h1>在物理边界上跳舞：RISC-V M-Mode 的极简主义虚拟化实验</h1>
+<p><strong>Dancing on the Physical Edge: A Minimalist Virtualization Experiment in RISC-V M-Mode</strong></p>
+<blockquote>
+<p><strong>摘要</strong>：如果我们抛弃 Linux 的通用性，抛弃 seL4 的复杂性，能否利用 RISC-V 的 Machine Mode 直接构建一个只有几百行代码的“纳米内核”？本文探讨了一个激进的架构实验：利用 OpenSBI 和 PMP 硬件机制，将故障隔离（Fault Isolation）而非资源管理作为第一性原理，实现了一个“崩溃即瞬移”的极简系统。这既是一次对极简主义的致敬，也是一次撞击硬件物理天花板的痛快记录。</p>
+</blockquote>
+<hr>
+<h2>一、 引言：为什么我们总是需要那么多层？</h2>
+<p>现代计算机系统的软件栈像是一个摇摇欲坠的千层饼：硬件之上是固件，固件之上是 Hypervisor，Hypervisor 之上是 OS 内核，内核之上才是应用。每一层都在做重复的事情：地址翻译、调度、权限检查。</p>
+<p>如果我们把这把梯子抽走，只留下最底层的那一根横木呢？</p>
+<p>在 RISC-V 架构中，<strong>M-Mode（Machine Mode）</strong> 是唯一的真神。它拥有对硬件的无限访问权。但在主流系统中，它被卑微地用作 Bootloader。我的想法是：<strong>让 M-Mode 常驻，让它直接管理 S-Mode（Supervisor Mode）的虚拟机，消灭中间商。</strong></p>
+<p>这不是微内核，这是 <strong>&amp;quot;Nanokernel&amp;quot;</strong>。</p>
+<hr>
+<h2>二、 架构哲学：Erlang on Bare Metal</h2>
+<p>传统操作系统将<strong>资源管理</strong>视为核心，致力于让系统“不崩溃”。而这个架构采用了 Erlang/OTP 的哲学：<strong>&amp;quot;Let it crash&amp;quot;</strong>。</p>
+<p>在这个设计中：</p>
+<ol>
+<li><strong>OpenSBI (M-Mode)</strong> 是唯一的稳定基石（Trusted Computing Base）。</li>
+<li><strong>S-Mode VM</strong> 被视为<strong>无状态函数</strong>，是不可信且随时可能崩溃的耗材。</li>
+<li><strong>恢复机制</strong> 优于 <strong>防御机制</strong>。</li>
+</ol>
+<p>当一个 VM 崩溃时，我们不尝试修补它，不 dump core，我们直接<strong>重启</strong>它。</p>
+<hr>
+<h2>三、 暴力美学：10行代码的生死轮回</h2>
+<p>实现这一哲学的核心，是一段极简的 Trap 处理代码。它达到了 Lisp 解释器般的简洁，但承载了系统的生死轮回。</p>
+<pre><code>// OpenSBI M-Mode Trap Handler (伪代码概念)
+void mtrap_handler() {
+    uint64_t cause = get_mcause();
+    
+    if (cause == ILLEGAL_SRET) {
+        // VM 试图自我调度，我们将控制权转交给下一个 VM
+        schedule_next_vm();
+    } 
+    else if (cause == LOAD_PAGE_FAULT || cause == STORE_PAGE_FAULT) {
+        // VM 崩溃了（例如访问了非法内存）
+        // 我们不杀进程，我们重启世界
+        vm_restart(current_vm_id);
+    }
+}
+</code></pre>
+<p>而在 <code>vm_restart</code> 中，我们看到了真正的魔法：<strong>归零重启</strong>。</p>
+<pre><code>void vm_restart(vm_id_t id) {
+    // 1. 重置寄存器状态
+    vm[id].mepc = vm[id].reset_vector;
+    vm[id].sp = vm[id].stack_top;
+    
+    // 2. 这里的关键是：不清空内存，不重新加载镜像
+    // 就像时光倒流，瞬间回到入口点
+    // 耗时：&amp;lt; 1微秒
+    execute_mret(); 
+}
+</code></pre>
+<p>相比于 Docker 的 <code>fork+exec</code> (10ms 级) 或 Linux 的重启 (秒级)，这种 <code>mret</code> 跳转带来的恢复速度是<strong>纳秒级</strong>的。它实现了**&amp;quot;崩溃即瞬移&amp;quot;**的效果。</p>
+<hr>
+<h2>四、 硬件滥用：PMP 的创造性误用</h2>
+<p>RISC-V 的 <strong>PMP (Physical Memory Protection)</strong> 本意是保护 M-Mode 不受 S-Mode 攻击。但我在这里反向使用它：<strong>用 M-Mode 的 PMP 来隔离多个 S-Mode VM</strong>。</p>
+<p>这相当于用硬件寄存器实现了一个轻量级的容器隔离：</p>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Docker (Linux)</th>
+<th>本方案 (PMP)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>隔离机制</strong></td>
+<td>软件 (cgroups/namespaces)</td>
+<td>硬件 (总线级拦截)</td>
+</tr>
+<tr>
+<td><strong>攻击面</strong></td>
+<td>巨大 (数百个系统调用)</td>
+<td>极小 (8个 SBI 调用)</td>
+</tr>
+<tr>
+<td><strong>性能损耗</strong></td>
+<td>低</td>
+<td><strong>零 (硬件并行检查)</strong></td>
+</tr>
+</tbody></table>
+<p>这看起来是完美的“硬件级容器”。直到我撞上了物理学的墙。</p>
+<hr>
+<h2>五、 撞墙：不可逾越的物理天花板</h2>
+<p>虽然该架构在逻辑上是完美的，但在工程上，它暴露了 RISC-V 标准当前的局限性。评分 <strong>8.5/10</strong> 的原因就在于剩下的 1.5 分被硬件物理限制扣除了。</p>
+<h3>1. 对齐的折磨 (The Torment of Alignment)</h3>
+<p>PMP 的 NAPOT (Naturally Aligned Power-of-Two) 模式要求内存区域必须是  对齐。</p>
+<ul>
+<li>如果你需要 12KB 内存，你必须分配 16KB。</li>
+<li>这导致了严重的<strong>物理内存碎片</strong>。这就像玩俄罗斯方块，但所有的方块都必须是正方形。</li>
+</ul>
+<h3>2. 稀缺的资源 (Slot Exhaustion)</h3>
+<p>标准 RISC-V 硬件通常只提供 <strong>16 个 PMP 条目</strong>。
+这意味着在扣除保护 OpenSBI 自身的条目后，我们最多只能运行 <strong>14-15 个 VM</strong>。这在嵌入式场景尚可，但在服务器场景是不可接受的。</p>
+<h3>3. 原子性的噩梦</h3>
+<p>在进行 VM 切换时，我们需要刷新 PMP 寄存器。这是一个非原子操作。如果在刷新了一半时触发了 NMI (不可屏蔽中断)，可能会导致权限泄露或系统死锁。M-Mode 的特权既是由于它的全能，也是由于它的<strong>脆弱</strong>。</p>
+<pre><code>
++---------------------------------------------------------------+
+|                 RISC-V PMP MEMORY LAYOUT                      |
+|          (NAPOT Mode: Naturally Aligned Power-of-Two)         |
++---------------------------------------------------------------+
+
+[ SCENARIO: VM Needs 12KB Memory (0x3000 bytes) ]
+
+      Physical Address      Requirement        Actual PMP Allocation
+      ----------------      -----------        ---------------------
+      0x80004000  +             ^                       ^
+                  |             |                       |
+                  |             |                       |
+                  |             |                       | WASTED RAM
+      0x80003000  +             |                       | (Internal
+                  |             | VM Usage              |  Frag.)
+                  |             | (12 KB)               |
+      0x80002000  +             |                       |
+                  |             |                       | ALLOCATED
+                  |             |                       | (16 KB)
+                  |             |                       | Must be
+      0x80001000  +             |                       | Power-of-2
+                  |             |                       |
+                  |             |                       |
+                  |             |                       |
+      0x80000000  +             v                       v
+      ---------------------------------------------------------------
+      
+[ THE DILEMMA ]
+1. Use 1 PMP Entry (16KB) --&amp;gt; Waste 4KB (25% overhead!)
+2. Use 2 PMP Entries (8KB + 4KB) --&amp;gt; Burn limited hardware slots!
+   (You only have 16 slots total!)
+</code></pre>
+<hr>
+<h2>六、 未来展望：等待 CHERI</h2>
+<p>这个架构目前的尴尬在于：我们试图用**基于页（Page-based）<strong>的硬件去做</strong>基于对象（Object-based）**的管理。</p>
+<p>救世主可能是 <strong>CHERI-RISC-V</strong>。</p>
+<p>CHERI 引入了硬件级的 Capability（能力指针）。届时，OpenSBI 不再需要维护复杂的 PMP 表，只需在 VM 启动时颁发一个 <code>Capability</code> 指针。</p>
+<pre><code>// 未来的 CHERI 代码
+void * __capability shared_mem = {
+    .base = 0x80000000,
+    .length = 0x1000,
+    .perms = PERM_READ | PERM_WRITE
+};
+</code></pre>
+<p>如果 VM 越界，硬件会自动 Trap，无需 M-Mode 介入。这将是 Nanokernel 的终极形态：<strong>从仲裁者退化为分发者</strong>。</p>
+<hr>
+<h2>七、 结语</h2>
+<p>OpenSBI as Nanokernel 可能无法成为下一个 Linux，也无法取代 Docker。但它是一次极具价值的系统架构实验。</p>
+<p>它向我们展示了：当我们剥离掉所有历史包袱，直面硬件裸机时，系统可以有多么<strong>简单</strong>，恢复可以有多么<strong>迅速</strong>。同时，它也无情地揭示了：软件的想象力，终究要戴着硬件规范的镣铐跳舞。</p>
+<p>这种在物理边界上的探索，正是系统程序员最极致的浪漫。</p>
+<hr>
+<h3>下一步行动</h3>
+<ul>
+<li><strong>对于读者</strong>：如果你对 RISC-V 的 PMP 机制感兴趣，欢迎查阅相关规范，或尝试阅读 OpenSBI 源码中的 <code>lib/sbi/riscv_pmp.c</code>。</li>
+<li><strong>对于架构师</strong>：也许我们可以讨论一种 &amp;quot;Shadow PMP&amp;quot; 机制，通过软件换空间，突破16个条目的限制？但这，是下一篇文章的话题了。</li>
+</ul>
+
+
+        ]]>
+      </content>
+      <summary type="html"></summary>
+      <updated>2026-01-22T05:19:00.000Z</updated>
+      <published>2026-01-22T05:19:00.000Z</published>
+      </entry><entry>
       <title>Damn Compatibility Paradox</title>
       <link href="https://d0n2.in/index.html?type=article&amp;filename=DamnCompatibilityParadox.md"/>
       <id>https://d0n2.in/index.html?type=article&amp;filename=DamnCompatibilityParadox.md</id>

@@ -116,6 +116,21 @@
   ],
   "文章列表": [
     {
+      "文章标题": "Dancing on the Physical Edge: A Minimalist Virtualization Experiment in RISC-V M-Mode",
+      "文件名": "DancingOnThePhysicalEdge.md",
+      "标签": [
+        "tech",
+        "risc-v"
+      ],
+      "摘要": "",
+      "创建时间（时间戳）": 1769059140000,
+      "修改时间（时间戳）": 1769059140000,
+      "是否置顶": false,
+      "是否隐藏": false,
+      "是否加密": false,
+      "启用评论": true
+    },
+    {
       "文章标题": "Damn Compatibility Paradox",
       "文件名": "DamnCompatibilityParadox.md",
       "标签": [
@@ -161,7 +176,7 @@
       "文章标题": "单维护者神话的背后",
       "文件名": "BehindtheMythoftheSingleMaintainer.md",
       "标签": [
-        "#tech"
+        "tech"
       ],
       "摘要": "",
       "创建时间（时间戳）": 1757745000000,
@@ -175,8 +190,8 @@
       "文章标题": "为什么我后悔折腾 RISC-V？在 Debian 12 上用 QEMU 测试 Fastboot 的血泪史",
       "文件名": "wcnmdRISC-V_I.md",
       "标签": [
-        "#tech",
-        "#risc-v"
+        "tech",
+        "risc-v"
       ],
       "摘要": "",
       "创建时间（时间戳）": 1756920420000,
@@ -305,7 +320,7 @@
   "启用自定义CSS": false,
   "启用自定义JS": true,
   "自定义CSS": "",
-  "自定义JS": "<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{\"token\": \"738b0b7ab4d04b9aabfc63ccfe92276e\"}'></script><!-- End Cloudflare Web Analytics -->",
+  "自定义JS": "<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{\"token\": \"559d72bfc8ad418fa939efa42c857357\"}'></script><!-- End Cloudflare Web Analytics -->",
   "文章列表中每页的文章数为": "10",
   "全站内容授权协议": "reserved",
   "不使用全站内容授权协议": false,
