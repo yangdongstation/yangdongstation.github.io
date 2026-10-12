@@ -1,18 +1,88 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <title>DonzStory</title>
     <subtitle>Before I leave this world, Please let me tell my own story</subtitle>
-    <link href="https://d0n2.in/atom.xml" rel="self"/>
-    <link href="https://d0n2.in"/>
-    <updated>2026-01-22T08:19:04.045Z</updated>
-    <id>https://d0n2.in</id>
+    <link href="https://donz.si/atom.xml" rel="self"/>
+    <link href="https://donz.si"/>
+    <updated>2026-10-12T07:23:44.770Z</updated>
+    <id>https://donz.si</id>
     <author>
         <name>DonzStory</name>
     </author>
     <generator uri="https://bbg.nekomoe.xyz">Baiyuanneko's Blog Generator</generator>
     <entry>
+      <title>小红书公开笔记索引（未单独收录）</title>
+      <link href="https://donz.si/index.html?type=article&amp;filename=RedNotePublicIndex.md"/>
+      <id>https://donz.si/index.html?type=article&amp;filename=RedNotePublicIndex.md</id>
+      <content type="html">
+        <![CDATA[
+<h1>小红书公开笔记索引（未单独收录）</h1>
+<p>本文整理自小红书用户 <a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332">6555ec7c000000000202b332</a> 的公开笔记。</p>
+<p>账号主页显示 271 条笔记；当前接口实际返回 91 个唯一笔记 ID，其中 79 条公开可见。MMLA 和“开源女孩”两篇已经在本站以全文形式收录。下面列出这批接口结果中其余 77 条尚未单独收录的公开笔记。</p>
+<p>RedNote 详情页对当前访问返回 <code>300017</code> 安全限制，因此本页只保留公开卡片能够确认的标题、日期、类型和原文链接，没有补写无法核实的正文。仅自己可见和已违规笔记不在本目录中。</p>
+<table><thead><tr><th>日期</th><th>标题</th><th>类型</th></tr></thead><tbody><tr><td>2026-07-24</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/6a6333c8000000000100177d">试着去画一下高中时候梦里的自己</a></td><td>图文</td></tr><tr><td>2026-07-15</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/6a578732000000001c026cdf">大小姐的出差日记</a></td><td>图文</td></tr><tr><td>2026-07-04</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/6a48e6ce000000001102e612">如果豆叮变成一只黏土小手办</a></td><td>图文</td></tr><tr><td>2026-07-04</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/6a48dcff000000001003cf9c">把豆叮丢进水墨仙境后，它好像会发光了</a></td><td>图文</td></tr><tr><td>2026-07-02</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/6a465640000000001003eac6">华硕proart创16电脑一日使用</a></td><td>视频</td></tr><tr><td>2026-05-17</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/6a0921eb00000000360186ec">《填不进表格的字》——给一个人写讣告的时…</a></td><td>图文</td></tr><tr><td>2026-04-01</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/69cd3621000000001a02663c">平庸</a></td><td>图文</td></tr><tr><td>2026-02-10</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/698a9b2a000000001b017d16">朋友用ai给我做了个动图</a></td><td>图文</td></tr><tr><td>2026-01-16</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/696a23b400000000220389d8">猫今天吃什么（…</a></td><td>图文</td></tr><tr><td>2026-01-10</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/69624bd900000000220201b6">2025年总结，2026年展望</a></td><td>图文</td></tr><tr><td>2025-12-24</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/694b6de8000000000d03a13b">这种建模会被男孩子要微信吗</a></td><td>图文</td></tr><tr><td>2025-12-18</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/6943f1aa000000001b026a8e">北京也不冷a…可以穿斗篷出门的～</a></td><td>图文</td></tr><tr><td>2025-12-15</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/693f85f2000000000d0392d8">明明是出去拍照，却感觉自己好可爱</a></td><td>图文</td></tr><tr><td>2025-11-21</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/69201bda000000001b03386e">21/11/2025</a></td><td>图文</td></tr><tr><td>2025-11-21</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/69201ba5000000000d03a058">16/11/2025</a></td><td>图文</td></tr><tr><td>2025-11-21</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/69201b82000000000d037df6">105112025</a></td><td>图文</td></tr><tr><td>2025-11-05</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/690ac09c000000000301b90f">人间五味，中传无味</a></td><td>图文</td></tr><tr><td>2025-10-13</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/68ec573800000000030388f5">猫里猫气</a></td><td>图文</td></tr><tr><td>2025-09-19</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/68ccca790000000013012d8c">上宝闪购开学季来了！🏃🏻</a></td><td>图文</td></tr><tr><td>2025-07-08</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/686d24e10000000012020859">夜宵狂欢季就在海底捞</a></td><td>图文</td></tr><tr><td>2025-06-06</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/6842a2500000000012004079">闪迪</a></td><td>图文</td></tr><tr><td>2025-06-06</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/6842a14a000000001200798a">三星</a></td><td>图文</td></tr><tr><td>2025-05-21</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/682d34d70000000003039a13">🥳在小红书创作1周年啦！</a></td><td>图文</td></tr><tr><td>2025-04-20</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/6804943d000000000f038c13">松下全画幅六周年</a></td><td>图文</td></tr><tr><td>2025-04-03</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/67edc94e000000000f0309ff">🥳在小红书赞和收藏破800啦！️️</a></td><td>图文</td></tr><tr><td>2025-03-19</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/67d9a2e9000000000903a417">拒绝药物滥用…不可以OD！</a></td><td>视频</td></tr><tr><td>2025-02-25</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/67bd53fa000000000603f5a9">咱可是纸新娘～</a></td><td>图文</td></tr><tr><td>2024-12-29</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/67716a6e000000000b023fbd">来点联动</a></td><td>图文</td></tr><tr><td>2024-11-19</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/673c85ac00000000020294d8">中国传媒大学新闻学院不怕清华拳的十个原因</a></td><td>图文</td></tr><tr><td>2024-10-20</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/6714ffba000000001602296b">最讨厌把学历挂在嘴边的女人了</a></td><td>图文</td></tr><tr><td>2024-10-19</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/67135451000000001b02e6ec">又拍照去了（</a></td><td>图文</td></tr><tr><td>2024-10-04</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/66ff7dfc000000002c02d144">打卡Airfreeing Fairy</a></td><td>图文</td></tr><tr><td>2024-09-25</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/66f363c9000000002a037fe0">中规中矩的cp200</a></td><td>图文</td></tr><tr><td>2024-09-25</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/66f3550c000000002a036a08">康康我的小红书新头像 🗣</a></td><td>图文</td></tr><tr><td>2024-09-25</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/66f35473000000002c02b0e5">这就是全能400</a></td><td>图文</td></tr><tr><td>2024-09-24</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/66f22d31000000002a034213">摄影老师直接封神</a></td><td>图文</td></tr><tr><td>2024-09-15</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/66e699620000000025030f93">底层coser探头</a></td><td>图文</td></tr><tr><td>2024-08-20</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/66c49a5d000000001f0144ae">🥳在小红书赞和收藏破500啦！️️</a></td><td>图文</td></tr><tr><td>2024-08-15</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/66bce134000000000503a25c">康康我的小红书新头像 🗣</a></td><td>图文</td></tr><tr><td>2024-08-06</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/66b229340000000005030bdd">玩胶片的，看看你们的海带</a></td><td>图文</td></tr><tr><td>2024-08-05</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/66b0e10f00000000050317be">你好，认识一下 🙋‍♀️</a></td><td>图文</td></tr><tr><td>2024-08-02</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/66acd4c80000000009014382">奢望…</a></td><td>图文</td></tr><tr><td>2024-07-28</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/66a6358200000000050236c7">又是吊打单反的一天（（（</a></td><td>图文</td></tr><tr><td>2024-07-24</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/66a058c9000000000302614a">最近现状</a></td><td>图文</td></tr><tr><td>2024-07-22</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/669e7362000000000a006604">🥳在小红书赞和收藏破400啦！️️</a></td><td>图文</td></tr><tr><td>2024-07-18</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/6698f58a000000000a026009">姐姐姐姐～</a></td><td>图文</td></tr><tr><td>2024-07-12</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/669123f6000000000a0045fb">美能达你可以吃富士（</a></td><td>图文</td></tr><tr><td>2024-07-10</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/668eafc7000000000d00da0a">祝我幸运</a></td><td>图文</td></tr><tr><td>2024-07-10</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/668e04690000000003025918">论奇奇怪怪的照片</a></td><td>图文</td></tr><tr><td>2024-07-10</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/668e006d000000000a024a2f">大概是…过期20年的彩负</a></td><td>图文</td></tr><tr><td>2024-07-09</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/668d2616000000000a0051b5">有点过于艺术</a></td><td>图文</td></tr><tr><td>2024-07-03</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/6685594c00000000030240b8">好卷～</a></td><td>图文</td></tr><tr><td>2024-07-02</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/6683a81c0000000003026959">看看有没有人找我陪拍…</a></td><td>图文</td></tr><tr><td>2024-07-02</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/66838749000000000d00f301">艺术生的生活</a></td><td>视频</td></tr><tr><td>2024-07-01</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/6682711d0000000003026f77">康康我的小红书新头像 🗣</a></td><td>图文</td></tr><tr><td>2024-06-29</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/667fa139000000001c037a86">你和同学的对话</a></td><td>视频</td></tr><tr><td>2024-06-27</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/667d6178000000001c02b6e1">记录自己分的第一盘胶片</a></td><td>图文</td></tr><tr><td>2024-06-25</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/667ac9b7000000001c028bb0">也不是不能用…</a></td><td>图文</td></tr><tr><td>2024-06-21</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/66753b52000000001c034bcd">根本不敢洗…</a></td><td>图文</td></tr><tr><td>2024-06-21</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/6674e599000000001d01a39e">起猛了，一觉起来胶片机复产了</a></td><td>图文</td></tr><tr><td>2024-06-15</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/666d58a4000000001d01bf1c">抽象的分装2.0</a></td><td>图文</td></tr><tr><td>2024-06-12</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/66690702000000001d019196">拿到了不大敢拍…</a></td><td>图文</td></tr><tr><td>2024-06-10</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/66671617000000001303fa38">喝海带汤吗朋友们</a></td><td>图文</td></tr><tr><td>2024-06-09</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/666558ee000000001500852b">艺术生崩溃瞬间</a></td><td>图文</td></tr><tr><td>2024-06-08</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/66644a51000000001500abec">洗成这样可以哭了</a></td><td>图文</td></tr><tr><td>2024-06-08</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/6663301e000000001303ffae">🥳在小红书赞和收藏破100啦！️️</a></td><td>图文</td></tr><tr><td>2024-06-07</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/666326e2000000001303f13d">想接点陪拍…</a></td><td>图文</td></tr><tr><td>2024-06-06</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/6660910d000000000c01a0d8">中奖的已经私聊要了地址了（x</a></td><td>图文</td></tr><tr><td>2024-06-04</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/665e7763000000001500af35">有没有人能莫名其妙送我一些胶片啊</a></td><td>图文</td></tr><tr><td>2024-06-04</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/665e76b4000000000c0188ed">一度怀疑这东西是不是洗不出来…</a></td><td>图文</td></tr><tr><td>2024-06-04</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/665e75b6000000000f00fba6">🥳在小红书赞和收藏破10啦！️️</a></td><td>图文</td></tr><tr><td>2024-06-03</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/665db0520000000015008edb">建国饭店自助面</a></td><td>图文</td></tr><tr><td>2024-06-01</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/665ac52e000000001500b51e">负片冲正片忘记看表导致的</a></td><td>图文</td></tr><tr><td>2024-05-31</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/6659c567000000001500b4df">苏联胶片冲洗实录（2</a></td><td>图文</td></tr><tr><td>2024-05-31</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/6659c31f0000000015009b5d">苏联胶片冲洗实录（1</a></td><td>图文</td></tr><tr><td>2024-05-31</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/6659c206000000001303f491">买了个苏联胶片（</a></td><td>图文</td></tr><tr><td>2024-05-18</td><td><a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/66484b26000000001303ea87">高司令 威士忌 @Loch Lomond罗曼湖</a></td><td>图文</td></tr></tbody></table>
+        ]]>
+      </content>
+      <summary type="html">整理小红书接口当前返回的 77 条未单独收录公开笔记，仅保留可核实的标题、日期、类型和原文链接。</summary>
+      <updated>2026-10-12T07:23:44.770Z</updated>
+      <published>2026-10-12T07:23:44.770Z</published>
+    </entry>
+    <entry>
+      <title>MMLA：让AI真正管住记忆</title>
+      <link href="https://donz.si/index.html?type=article&amp;filename=MMLAMemory.md"/>
+      <id>https://donz.si/index.html?type=article&amp;filename=MMLAMemory.md</id>
+      <content type="html">
+        <![CDATA[
+<p>本文整理自小红书公开笔记，原文发表于 2026-08-13。<a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/6a7d35d10000000022030570">小红书原文</a></p>
+<hr>
+<p>长上下文再长，也只是把历史塞进窗口……</p>
+<p>真正的智能体，需要的是可管、可控、有权威的记忆！</p>
+<p>我们团队最新发布 MMLA（有界可编辑记忆架构）：</p>
+<p>让过去真正塑造未来，而不是被无限重放。</p>
+<p>核心成绩亮眼：</p>
+<ul>
+<li>✅ 受控生命周期任务：300/300 精确匹配（三个随机种子全过）</li>
+<li>✅ HotpotQA 多跳问答：比密集检索高 5.5–16.6 F1，只用约 10% 证据词，就达到甚至超过全上下文表现</li>
+<li>✅ 类型化关系绑定：240/240 全对，对照组全军覆没（0/240）</li>
+</ul>
+<p>所有骨干模型都冻结测试，负面结果也公开透明～</p>
+<p>目前端到端还在完善中，但关键组件已经验证有效！</p>
+<p>📄 论文：<a href="https://arxiv.org/abs/2606.28876">arXiv:2606.28876</a><br>💻 公开仓库：<a href="https://github.com/MMLA-org/mmla-memory">MMLA-org/mmla-memory</a></p>
+<p>做长期智能体、做知识管理、做安全可控 AI 的朋友，赶紧收藏！</p>
+<p>过去不该只是历史，而应该被精准管理✨</p>
+<p>欢迎点赞、收藏、转发讨论～</p>
+<p>有问题评论区见！</p>
+<p>原文标签：#AI研究 #大模型 #长上下文 #记忆机制 #MMLA #开源 #人工智能 #深度学习</p>
+        ]]>
+      </content>
+      <summary type="html">MMLA（有界可编辑记忆架构）尝试让过去真正塑造未来，并展示受控生命周期、多跳问答与类型化关系绑定实验结果。</summary>
+      <updated>2026-10-12T07:23:44.770Z</updated>
+      <published>2026-08-13T03:11:13.000Z</published>
+    </entry>
+    <entry>
+      <title>今天有个开源女孩传讯息给我</title>
+      <link href="https://donz.si/index.html?type=article&amp;filename=OpenSourceGirlMessage.md"/>
+      <id>https://donz.si/index.html?type=article&amp;filename=OpenSourceGirlMessage.md</id>
+      <content type="html">
+        <![CDATA[
+<p>本文整理自小红书公开笔记，原文发表于 2026-07-16。<a href="https://www.rednote.com/user/profile/6555ec7c000000000202b332/6a58befd00000000050392bd">小红书原文</a></p>
+<hr>
+<p>今天有个开源女孩传讯息给我，<br>这是她入圈以来最好的夏天。</p>
+<p>前几年，她十六岁，进了 ai startup，搭了异构集群。<br>竟然预支到了五年的薪水。</p>
+<p>arXiv 的论文永远免费，<br>随便捡一个线性注意力下来改，<br>只要一天茶水就够了。</p>
+<p>闲鱼上的整机也在向她打折出售。<br>队友们都跑上了最新的大模型。</p>
+<p>前天她在中传的梧桐树下散步。<br>大街上突然所有人都停下手边的事，<br>互相拥抱，开始欢呼。</p>
+<p>她说她真的很开心。<br>那一刻有一种错觉，<br>好像人类真的短暂进入过，<br>某种黄金时代。</p>
+<p>原文标签：#给你看看我 #好爱这个世界啊 #黄金时代 #夏天 #美好的夏天</p>
+        ]]>
+      </content>
+      <summary type="html">一段关于开源女孩在某个夏天里短暂触到黄金时代的散文。</summary>
+      <updated>2026-10-12T07:23:44.770Z</updated>
+      <published>2026-07-16T11:22:37.000Z</published>
+    </entry>
+    <entry>
       <title>Incinerable Computing</title>
-      <link href="https://d0n2.in/index.html?type=article&amp;filename=IncinerableComputing.md"/>
-      <id>https://d0n2.in/index.html?type=article&amp;filename=IncinerableComputing.md</id>
+      <link href="https://donz.si/index.html?type=article&amp;filename=IncinerableComputing.md"/>
+      <id>https://donz.si/index.html?type=article&amp;filename=IncinerableComputing.md</id>
       <content type="html">
         <![CDATA[
           <h1>焚化计算：一种以销毁为核心的计算范式</h1>
@@ -246,8 +316,8 @@ Monitor 在 IEU 被焚化后，对遗书区域进行结构与完整性检查。�
       <published>2026-01-22T08:07:00.000Z</published>
       </entry><entry>
       <title>Dancing on the Physical Edge: A Minimalist Virtualization Experiment in RISC-V M-Mode</title>
-      <link href="https://d0n2.in/index.html?type=article&amp;filename=DancingOnThePhysicalEdge.md"/>
-      <id>https://d0n2.in/index.html?type=article&amp;filename=DancingOnThePhysicalEdge.md</id>
+      <link href="https://donz.si/index.html?type=article&amp;filename=DancingOnThePhysicalEdge.md"/>
+      <id>https://donz.si/index.html?type=article&amp;filename=DancingOnThePhysicalEdge.md</id>
       <content type="html">
         <![CDATA[
           <h1>在物理边界上跳舞：RISC-V M-Mode 的极简主义虚拟化实验</h1>
@@ -411,8 +481,8 @@ void * __capability shared_mem = {
       <published>2026-01-22T05:19:00.000Z</published>
       </entry><entry>
       <title>Damn Compatibility Paradox</title>
-      <link href="https://d0n2.in/index.html?type=article&amp;filename=DamnCompatibilityParadox.md"/>
-      <id>https://d0n2.in/index.html?type=article&amp;filename=DamnCompatibilityParadox.md</id>
+      <link href="https://donz.si/index.html?type=article&amp;filename=DamnCompatibilityParadox.md"/>
+      <id>https://donz.si/index.html?type=article&amp;filename=DamnCompatibilityParadox.md</id>
       <content type="html">
         <![CDATA[
           <p>sparc是被时代淘汰的古董设计没留余量依托；x86是上世纪的兼容垃圾，为了兼容无所不用其极，AMD64曾救过他，但是AVX512把它变成了摇摇欲坠的屎山；arm是上世纪老旧思想创造的古董，除了相对成熟，设计思路依然老旧，你看看你的分页模式…；RISCV是这个世纪初不成熟的梦想，虽然思路先进，但是不成熟，十几年了，还像一个长不大也不想长大的的孩子一样，碎了一地，还没有人给他拼拼凑凑…；PowerPC是古代的圣遗物，完全进了棺材，但是还在喘气，这东西就应该死在apple不爱他那天，现在还活着就是因为有人喜欢自嗨；MIPS是复杂又低能的象征，你看看这个专利枷锁和编码效率…群友说是圣遗物；IA64是工程能力没有达到，但思想过于先进的脱节产品，现在而言，超前了10年…；IBM Z，这个为了兼容而舍弃部分性能，还贼几把大的东西，我想不明白，为什么有人在今年要兼容60年代的东西…我看要是没有30年的保修，没人用这个玩意儿</p>
@@ -426,8 +496,8 @@ void * __capability shared_mem = {
       <published>2026-01-10T12:08:00.000Z</published>
       </entry><entry>
       <title>Summary in 2025, Outlook to 2026</title>
-      <link href="https://d0n2.in/index.html?type=article&amp;filename=SummaryIn2025OutlookTo2026.md"/>
-      <id>https://d0n2.in/index.html?type=article&amp;filename=SummaryIn2025OutlookTo2026.md</id>
+      <link href="https://donz.si/index.html?type=article&amp;filename=SummaryIn2025OutlookTo2026.md"/>
+      <id>https://donz.si/index.html?type=article&amp;filename=SummaryIn2025OutlookTo2026.md</id>
       <content type="html">
         <![CDATA[
           <p>I may not regret the decisions I&amp;#39;ve made, but I absolutely regret all the ways I ran away before. I hope it&amp;#39;s not too late yet.</p>
@@ -461,12 +531,12 @@ So many more stars in the sky now... I miss you all...</p>
       <published>2026-01-10T12:01:00.000Z</published>
       </entry><entry>
       <title>The power of communication from xhmt’s exgirlfriend</title>
-      <link href="https://d0n2.in/index.html?type=article&amp;filename=xhmtsexgirlfriend.md"/>
-      <id>https://d0n2.in/index.html?type=article&amp;filename=xhmtsexgirlfriend.md</id>
+      <link href="https://donz.si/index.html?type=article&amp;filename=xhmtsexgirlfriend.md"/>
+      <id>https://donz.si/index.html?type=article&amp;filename=xhmtsexgirlfriend.md</id>
       <content type="html">
         <![CDATA[
           <p>为什么这篇“校园控诉信”能在网络上爆火？——一份传播学解读</p>
-<p><a href="https://d0n2.in/files/xhmtsexgirlfriend.pdf">https://d0n2.in/files/xhmtsexgirlfriend.pdf</a></p>
+<p><a href="https://donz.si/files/xhmtsexgirlfriend.pdf">https://donz.si/files/xhmtsexgirlfriend.pdf</a></p>
 <p>最近，一份关于某大学生恋爱纠纷的长文在网上流传，引起了大量围观和热议。它并不是普通的“分手故事”，而是一篇经过传播学技巧包装的公开控诉。为什么这样一篇文章能够迅速吸引眼球、引发转发？我们可以从传播学角度来解构。</p>
 <ol>
 <li>结构完整、逻辑清晰</li>
@@ -538,8 +608,8 @@ So many more stars in the sky now... I miss you all...</p>
       <published>2025-10-01T14:51:00.000Z</published>
       </entry><entry>
       <title>单维护者神话的背后</title>
-      <link href="https://d0n2.in/index.html?type=article&amp;filename=BehindtheMythoftheSingleMaintainer.md"/>
-      <id>https://d0n2.in/index.html?type=article&amp;filename=BehindtheMythoftheSingleMaintainer.md</id>
+      <link href="https://donz.si/index.html?type=article&amp;filename=BehindtheMythoftheSingleMaintainer.md"/>
+      <id>https://donz.si/index.html?type=article&amp;filename=BehindtheMythoftheSingleMaintainer.md</id>
       <content type="html">
         <![CDATA[
           <p>——对《Open Source is one person》一文的冷思考</p>
@@ -625,8 +695,8 @@ NPM 下载计数与 GitHub Stars 成为简历货币，数量&amp;gt;质量刺激
       <published>2025-09-13T06:30:00.000Z</published>
       </entry><entry>
       <title>为什么我后悔折腾 RISC-V？在 Debian 12 上用 QEMU 测试 Fastboot 的血泪史</title>
-      <link href="https://d0n2.in/index.html?type=article&amp;filename=wcnmdRISC-V_I.md"/>
-      <id>https://d0n2.in/index.html?type=article&amp;filename=wcnmdRISC-V_I.md</id>
+      <link href="https://donz.si/index.html?type=article&amp;filename=wcnmdRISC-V_I.md"/>
+      <id>https://donz.si/index.html?type=article&amp;filename=wcnmdRISC-V_I.md</id>
       <content type="html">
         <![CDATA[
           <h1>为什么我后悔折腾 RISC-V？在 Debian 12 上用 QEMU 测试 Fastboot 的血泪史</h1>
@@ -744,8 +814,8 @@ fastboot reboot
       <published>2025-09-03T17:27:00.000Z</published>
       </entry><entry>
       <title>Traumgespräch</title>
-      <link href="https://d0n2.in/index.html?type=article&amp;filename=Traumgespräch.md"/>
-      <id>https://d0n2.in/index.html?type=article&amp;filename=Traumgespräch.md</id>
+      <link href="https://donz.si/index.html?type=article&amp;filename=Traumgespräch.md"/>
+      <id>https://donz.si/index.html?type=article&amp;filename=Traumgespräch.md</id>
       <content type="html">
         <![CDATA[
           <p>I am deeply envious of everyone here because I have no talent. Unlike all of you—you who are talented, who have pursuits, who have dreams—I have no talent at all. In every way, I am inferior to others; I have no dreams. I merely pretend to be competent in certain areas, but a counterfeit is ultimately a counterfeit; it can never become the real thing. I may have told you that some people are fools, but that&amp;#39;s because I believe you shouldn&amp;#39;t waste your own talents and abilities. This is merely the envy and jealousy of a loser toward those who are capable. A capable person shouldn&amp;#39;t abandon their own strengths; if you see them as a burden, isn&amp;#39;t that too extravagant? You simply don&amp;#39;t understand how empty life is without bearing any expectations!</p>
@@ -758,8 +828,8 @@ fastboot reboot
       <published>2025-05-28T13:43:00.000Z</published>
       </entry><entry>
       <title>Out Of Reach</title>
-      <link href="https://d0n2.in/index.html?type=article&amp;filename=PensieriOutOfReach.md"/>
-      <id>https://d0n2.in/index.html?type=article&amp;filename=PensieriOutOfReach.md</id>
+      <link href="https://donz.si/index.html?type=article&amp;filename=PensieriOutOfReach.md"/>
+      <id>https://donz.si/index.html?type=article&amp;filename=PensieriOutOfReach.md</id>
       <content type="html">
         <![CDATA[
           <p><strong>OutOfReach</strong>  </p>
@@ -775,8 +845,8 @@ fastboot reboot
       <published>2025-02-27T08:01:00.000Z</published>
       </entry><entry>
       <title>Summary in 2022, Outlook to 2023</title>
-      <link href="https://d0n2.in/index.html?type=article&amp;filename=SummaryIn2022OutlookTo2023.md"/>
-      <id>https://d0n2.in/index.html?type=article&amp;filename=SummaryIn2022OutlookTo2023.md</id>
+      <link href="https://donz.si/index.html?type=article&amp;filename=SummaryIn2022OutlookTo2023.md"/>
+      <id>https://donz.si/index.html?type=article&amp;filename=SummaryIn2022OutlookTo2023.md</id>
       <content type="html">
         <![CDATA[
           Summary in 2022, Outlook to 2023
@@ -788,8 +858,8 @@ fastboot reboot
       <published>2023-01-01T00:00:00.000Z</published>
       </entry><entry>
       <title>Before All</title>
-      <link href="https://d0n2.in/index.html?type=article&amp;filename=BeforeALL.md"/>
-      <id>https://d0n2.in/index.html?type=article&amp;filename=BeforeALL.md</id>
+      <link href="https://donz.si/index.html?type=article&amp;filename=BeforeALL.md"/>
+      <id>https://donz.si/index.html?type=article&amp;filename=BeforeALL.md</id>
       <content type="html">
         <![CDATA[
           Before All
@@ -801,8 +871,8 @@ fastboot reboot
       <published>2022-08-23T00:00:00.000Z</published>
       </entry><entry>
       <title>Night</title>
-      <link href="https://d0n2.in/index.html?type=article&amp;filename=Night.md"/>
-      <id>https://d0n2.in/index.html?type=article&amp;filename=Night.md</id>
+      <link href="https://donz.si/index.html?type=article&amp;filename=Night.md"/>
+      <id>https://donz.si/index.html?type=article&amp;filename=Night.md</id>
       <content type="html">
         <![CDATA[
           
@@ -814,8 +884,8 @@ fastboot reboot
       <published>2022-08-23T00:00:00.000Z</published>
       </entry><entry>
       <title>Dawn</title>
-      <link href="https://d0n2.in/index.html?type=article&amp;filename=dawn.md"/>
-      <id>https://d0n2.in/index.html?type=article&amp;filename=dawn.md</id>
+      <link href="https://donz.si/index.html?type=article&amp;filename=dawn.md"/>
+      <id>https://donz.si/index.html?type=article&amp;filename=dawn.md</id>
       <content type="html">
         <![CDATA[
           
@@ -827,8 +897,8 @@ fastboot reboot
       <published>2022-08-24T00:00:00.000Z</published>
       </entry><entry>
       <title>Polar Night I</title>
-      <link href="https://d0n2.in/index.html?type=article&amp;filename=PolarNight-I.md"/>
-      <id>https://d0n2.in/index.html?type=article&amp;filename=PolarNight-I.md</id>
+      <link href="https://donz.si/index.html?type=article&amp;filename=PolarNight-I.md"/>
+      <id>https://donz.si/index.html?type=article&amp;filename=PolarNight-I.md</id>
       <content type="html">
         <![CDATA[
           
@@ -840,8 +910,8 @@ fastboot reboot
       <published>2022-08-24T00:00:00.000Z</published>
       </entry><entry>
       <title>Polar Night II</title>
-      <link href="https://d0n2.in/index.html?type=article&amp;filename=PolarNight-II.md"/>
-      <id>https://d0n2.in/index.html?type=article&amp;filename=PolarNight-II.md</id>
+      <link href="https://donz.si/index.html?type=article&amp;filename=PolarNight-II.md"/>
+      <id>https://donz.si/index.html?type=article&amp;filename=PolarNight-II.md</id>
       <content type="html">
         <![CDATA[
           
