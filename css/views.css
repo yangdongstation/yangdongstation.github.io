@@ -1,0 +1,1505 @@
+/* Antiphon v2 · 对经 — views */
+
+[hidden] {
+  display: none !important;
+}
+
+/* ——— editorial section heads ———
+   Every listing opens with a ruled title + registry metadata on the right.
+   This is the main "institute" gesture: a document header, not a magazine kicker. */
+
+.sec-head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.9rem;
+  margin: 0 0 clamp(1.4rem, 3vw, 2.2rem);
+}
+
+.sec-head-title {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--seal);
+  white-space: nowrap;
+}
+
+.sec-head-rule {
+  height: 1px;
+  background: var(--rule);
+  min-width: 1.5rem;
+}
+
+.sec-head-meta {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.63rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* legacy eyebrow kept for overlays */
+.eyebrow,
+.overlay-eyebrow {
+  margin: 0 0 1.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--seal);
+  text-align: start;
+}
+
+.signal-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 1.8rem 0;
+}
+
+.signal-divider .line {
+  display: block;
+  height: 1px;
+  width: min(8rem, 30%);
+  background: linear-gradient(90deg, var(--rule), transparent);
+}
+
+.signal-divider .line--right {
+  background: linear-gradient(270deg, var(--rule), transparent);
+}
+
+.signal-divider .node {
+  display: block;
+  font-size: 0.5rem;
+  line-height: 1;
+  color: var(--signal);
+}
+
+/* ——— announcement + verse ——— */
+
+/* announcement: same sheet, no fill. The signal stripe is the only mark of
+   its kind here, and it is feathered vertically like .panel-edge. */
+.announcement {
+  position: relative;
+  margin: 0 0 2.2rem;
+  padding: 0.95rem 1.2rem 1.05rem;
+  background: none;
+}
+
+.announcement::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  z-index: 0;
+  pointer-events: none;
+  background: var(--signal);
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 12%, #000 86%, transparent);
+  mask-image: linear-gradient(180deg, transparent, #000 12%, #000 86%, transparent);
+}
+
+.announcement-label {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--seal);
+}
+
+.announcement-label::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+
+.announcement .prose {
+  font-size: 0.94rem;
+  line-height: 1.8;
+}
+
+.announcement .prose > * + * {
+  margin-top: 0.7em;
+}
+
+.verse {
+  margin: 0 0 2.4rem;
+  /* Lofted as a shorthand would be a physical left padding: it has to be the
+     inline-start edge, or an Arabic pull-quote gets its indent on the wrong
+     side of the text it is indenting. */
+  padding: 0;
+  padding-inline-start: 1.3rem;
+  border-inline-start: 1px solid var(--rule-2);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.02rem;
+  line-height: 1.85;
+  color: var(--ink-2);
+}
+
+.verse-source {
+  display: block;
+  margin-top: 0.5rem;
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-size: var(--text-micro);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ——— featured lead: the pinned file ——— */
+
+/* The featured block is not a card: no frame, no second fill. It is delimited
+   by rules above and below that dissolve at both ends — the same gesture as
+   .panel-top — and holds a faint pool of warmer light that is gone before the
+   block's horizontal ends. One sheet, one material. */
+.lead {
+  display: grid;
+  /* The featured block shares the ledger's vertical axis: the 3px signal
+     stripe replaces part of the NO. column so the title starts exactly where
+     the entries' titles start below (entry track is 4.2rem — see .entry). */
+  grid-template-columns: calc(4.2rem - 3px) minmax(0, 1fr);
+  gap: 1.4rem 1.5rem;
+  margin: 0 0 2.2rem;
+  /* 3px on the inline-start edge is the stripe's own gutter, not a border: the
+     text grid starts at the same x as before, so the axis below is untouched.
+     Written as block+inline shorthands so the mirror direction keeps its 1.5rem
+     inset on the side opposite the stripe. */
+  padding-block: 1.5rem 1.55rem;
+  padding-inline: 1.5rem;
+  padding-inline-start: 3px;
+  position: relative;
+  background-color: transparent;
+  /* a pool of warmer light on the paper; fades out well before the edges */
+  background-image: radial-gradient(
+    46% 132% at 42% 30%,
+    rgba(255, 252, 240, 0.6) 0%,
+    rgba(255, 252, 240, 0.24) 44%,
+    rgba(255, 252, 240, 0) 90%
+  );
+  border: 0;
+}
+
+/* night: the same pool, but keyed to the matte clay of the dark palette at a
+   whisper, so it reads as reflected warmth on black paper rather than a lit
+   patch sitting on top of it */
+body[data-mode="night"] .lead {
+  background-image: radial-gradient(
+    46% 132% at 42% 30%,
+    rgba(210, 118, 79, 0.085) 0%,
+    rgba(210, 118, 79, 0.032) 44%,
+    rgba(210, 118, 79, 0) 90%
+  );
+}
+
+/* delimiting rules: hairlines top and bottom, both feathered horizontally.
+   Painted as a masked layer so the two rules share one alpha ramp. */
+.lead::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--rule), var(--rule)),
+    linear-gradient(var(--rule), var(--rule));
+  background-repeat: no-repeat;
+  background-size: 100% 1px, 100% 1px;
+  background-position: 0 0, 0 100%;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+}
+
+/* the terracotta stripe stays, but feathered vertically like .panel-edge */
+.lead::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  z-index: 1;
+  pointer-events: none;
+  background: var(--signal);
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 12%, #000 86%, transparent);
+  mask-image: linear-gradient(180deg, transparent, #000 12%, #000 86%, transparent);
+}
+
+.lead-fig {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding-top: 0.1rem;
+  /* the column divider feathers top and bottom rather than running edge to
+     edge: a rule that stops dead would rebuild the frame we just removed */
+  border-inline-end: 0;
+  padding-inline-end: 0.85rem;
+  position: relative;
+}
+
+.lead-fig::after {
+  content: "";
+  position: absolute;
+  inset-inline-end: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  pointer-events: none;
+  background: var(--rule);
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 18%, #000 82%, transparent);
+  mask-image: linear-gradient(180deg, transparent, #000 18%, #000 82%, transparent);
+}
+
+.lead-no {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  color: var(--seal);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  border-bottom: 1px solid var(--rule-2);
+  padding-bottom: 0.5rem;
+}
+
+.lead-glyph {
+  display: block;
+  color: var(--signal);
+  opacity: 0.85;
+}
+
+.lead-body {
+  min-width: 0;
+}
+
+.lead-kicker {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.7rem;
+  margin: 0 0 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.lead-flag {
+  padding: 0.16em 0.42em 0.2em;
+  border: 1px solid var(--seal);
+  color: var(--seal);
+  letter-spacing: 0.2em;
+  transform: rotate(-1.2deg);
+}
+
+.lead-title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.65rem, 3vw, 2.2rem);
+  font-weight: 500;
+  line-height: 1.16;
+  letter-spacing: -0.014em;
+  text-wrap: balance;
+}
+
+.lead-title a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.2em;
+  transition: text-decoration-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+.lead-title a:hover {
+  color: var(--link);
+  text-decoration-color: var(--signal);
+}
+
+.lead-dek {
+  margin: 0.65rem 0 0;
+  max-width: 38rem;
+  font-size: 0.98rem;
+  line-height: 1.75;
+  color: var(--ink-2);
+}
+
+.lead-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1.2rem;
+  margin-top: 1rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--rule);
+}
+
+.lead-read {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  color: var(--seal);
+  white-space: nowrap;
+}
+
+/* ——— home ledger ——— */
+
+.entry-list {
+  border-top: 1px solid var(--ink);
+}
+
+.entry {
+  display: grid;
+  /* 4.2rem holds the widest ENTRY_NO shape ("第 001 号/號", "제 001 호") on one
+     line; .lead's first track below keeps its titles on the same axis. */
+  grid-template-columns: 4.2rem minmax(0, 1fr) 6.2rem;
+  gap: 0.8rem 1.5rem;
+  padding: 1.7rem 0 1.8rem;
+  border-bottom: 1px solid var(--rule);
+  align-items: start;
+}
+
+.entry-no {
+  padding-top: 0.32rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: var(--seal);
+  font-variant-numeric: tabular-nums;
+  /* CJK/Arabic ENTRY_NO shapes ("第 001 号", "رقم 001") must not push the
+     trailing glyph onto a second line inside the fixed NO. column. */
+  white-space: nowrap;
+}
+
+.entry-body {
+  min-width: 0;
+}
+
+.entry-title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: var(--text-entry);
+  font-weight: 500;
+  line-height: 1.24;
+  letter-spacing: -0.008em;
+  text-wrap: balance;
+}
+
+.entry-title a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.2em;
+  transition: text-decoration-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+.entry-title a:hover {
+  color: var(--link);
+  text-decoration-color: var(--signal);
+}
+
+.pinned-mark {
+  display: inline-block;
+  margin-inline-start: 0.6rem;
+  padding: 0.18em 0.42em 0.2em;
+  border: 1px solid var(--seal);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--seal);
+  vertical-align: 0.25em;
+  transform: rotate(-1.6deg);
+}
+
+.entry-excerpt {
+  margin: 0.6rem 0 0;
+  max-width: 42rem;
+  font-size: 0.94rem;
+  line-height: 1.78;
+  color: var(--muted);
+}
+
+/* Latin list copy: CJK leading is far too airy for Roman text */
+
+body[data-script="latin"] .entry-excerpt,
+body[data-script="latin"] .lead-dek {
+  line-height: 1.6;
+  letter-spacing: 0;
+}
+
+/* Japanese list copy sits a touch airier than Chinese */
+
+body[data-script="ja"] .entry-excerpt,
+body[data-script="ja"] .lead-dek {
+  line-height: 1.85;
+}
+
+body[data-script="latin"] .entry-title {
+  line-height: 1.18;
+  letter-spacing: -0.018em;
+}
+
+body[data-script="latin"] .lead-title {
+  line-height: 1.1;
+  letter-spacing: -0.024em;
+}
+
+.entry-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 1rem;
+  margin-top: 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.63rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.entry-foot .sep,
+.lead-kicker .sep {
+  color: var(--rule-2);
+}
+
+.entry-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.85rem;
+}
+
+.entry-side {
+  padding-top: 0.35rem;
+  text-align: end;
+  font-family: var(--font-mono);
+  font-size: 0.63rem;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.9;
+}
+
+.entry-side .side-year {
+  color: var(--ink-2);
+  letter-spacing: 0.16em;
+}
+
+.tag-link {
+  font-family: var(--font-mono);
+  font-size: 0.63rem;
+  letter-spacing: 0.1em;
+  color: var(--signal);
+  border-bottom: 1px solid transparent;
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+
+.tag-link::before {
+  content: "#";
+  margin-inline-end: 0.1em;
+  color: var(--rule-2);
+}
+
+.tag-link:hover {
+  color: var(--link);
+  border-bottom-color: var(--signal);
+}
+
+/* ——— pagination ——— */
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--rule);
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.page-link {
+  color: var(--signal);
+  padding: 0.2rem 0;
+  border-bottom: 1px solid transparent;
+}
+
+.page-link:hover {
+  color: var(--link);
+  border-bottom-color: var(--signal);
+}
+
+.page-link.is-disabled {
+  opacity: 0.32;
+  pointer-events: none;
+}
+
+.page-count {
+  color: var(--muted);
+  letter-spacing: 0.18em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ——— article header + catalog card ——— */
+
+.article-header {
+  position: relative;
+  /* The header shares the prose column instead of spanning the panel. The body
+     below is `max-width: var(--measure); margin: 0 auto`, so a full-width header
+     put the headline and catalog on one axis and the running text on another —
+     the content appeared to jump sideways as you crossed from title to body.
+     Both now resolve to the same centred measure. */
+  max-width: var(--measure);
+  margin: 0 auto 2.4rem;
+}
+
+/* The stamp is painted against the panel, not the prose column: it deliberately
+   hangs out to the right of the measured text where the page still has paper. */
+.stamp {
+  position: absolute;
+  top: 0.1rem;
+  inset-inline-end: 0;
+  padding: 0.3rem 0.55rem 0.34rem;
+  border: 1px solid var(--seal);
+  color: var(--seal);
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.82;
+  transform: rotate(-2.4deg);
+  pointer-events: none;
+}
+
+.article-kicker {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem 1rem;
+  margin-bottom: 1.15rem;
+  /* 7.2rem clears the widest stamp ('CLASSIFICADO' in pt reaches ~116px) with
+     the rotated stamp still clear of the kicker text. */
+  padding-inline-end: 7.2rem;
+  font-family: var(--font-mono);
+}
+
+.file-no {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--seal);
+  font-variant-numeric: tabular-nums;
+}
+
+.kicker-sub {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.article-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-article-title);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: var(--script-title-tracking, -0.018em);
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+/* Latin display type wants a flatter line and no optical air at all */
+
+body[data-script="latin"] .article-title,
+body:not([data-script]):lang(en) .article-title {
+  line-height: 1.06;
+  font-optical-sizing: auto;
+}
+
+/* Japanese heading faces: palt/vpal keep the kana proportional at display sizes */
+
+body[data-script="ja"] .article-title,
+body[data-script="ja"] .lead-title,
+body[data-script="ja"] .entry-title,
+body:not([data-script]):lang(ja) .article-title,
+body:not([data-script]):lang(ja) .lead-title,
+body:not([data-script]):lang(ja) .entry-title {
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "palt" 1, "vpal" 1;
+}
+
+/* Japanese titles run long: a little extra leading keeps two-line titles calm */
+
+body[data-script="ja"] .article-title,
+body:not([data-script]):lang(ja) .article-title {
+  line-height: 1.18;
+}
+
+body[data-script="latin"] .article-dek,
+body:not([data-script]):lang(en) .article-dek {
+  max-width: 32rem;
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
+.article-dek {
+  margin: 1.05rem 0 0;
+  max-width: 40rem;
+  font-family: var(--font-serif);
+  font-size: var(--text-lede);
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+/* the catalog card: tabular cells under the title */
+
+.article-catalog {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+  margin: 1.9rem 0 0;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--rule);
+}
+
+.catalog-cell {
+  padding: 0.7rem 0 0.75rem;
+  padding-inline-end: 0.9rem;
+  padding-inline-start: 0;
+  border-inline-end: 1px solid var(--rule);
+  font-variant-numeric: tabular-nums;
+}
+
+.catalog-cell:last-child {
+  border-inline-end: 0;
+}
+
+.catalog-cell + .catalog-cell {
+  padding-inline-start: 0.9rem;
+}
+
+.catalog-key {
+  display: block;
+  margin-bottom: 0.28rem;
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.catalog-val {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.07em;
+  color: var(--ink);
+}
+
+.catalog-val.is-signal {
+  color: var(--seal);
+}
+
+/* legacy meta row used inside article pages */
+.article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.8rem;
+  margin-top: 1.1rem;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.section-index {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.6em;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  color: var(--signal);
+  padding-top: 0.15em;
+}
+
+.article-meta .dot {
+  color: var(--rule-2);
+}
+
+.article-meta .meta-value {
+  color: var(--signal);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ——— article body + footer ——— */
+
+.article-body {
+  max-width: var(--measure);
+  margin: 0 auto;
+}
+
+.license-block {
+  max-width: var(--measure);
+  margin: 3rem auto 0;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--rule);
+  font-family: var(--font-ui);
+  font-size: 0.76rem;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+.license-label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--signal);
+}
+
+.article-actions {
+  max-width: var(--measure);
+  margin: 1.1rem auto 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.3rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.action-link {
+  color: var(--ink-2);
+  border-bottom: 1px solid var(--signal);
+  padding-bottom: 2px;
+  transition: color var(--dur) var(--ease);
+}
+
+.action-link:hover {
+  color: var(--seal);
+}
+
+.prevnext {
+  max-width: var(--measure);
+  margin: 3rem auto 0;
+  padding-top: 1.3rem;
+  border-top: 1px solid var(--ink);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 2rem;
+}
+
+.prevnext-item {
+  min-width: 0;
+}
+
+.prevnext-item--next {
+  text-align: end;
+}
+
+.prevnext-empty {
+  opacity: 0.3;
+}
+
+.prevnext-label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--signal);
+}
+
+.prevnext-title {
+  font-family: var(--font-serif);
+  font-size: 1.06rem;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+.prevnext-title a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.2em;
+}
+
+.prevnext-title a:hover {
+  color: var(--link);
+  text-decoration-color: var(--signal);
+}
+
+/* ——— comments ——— */
+
+.comment-area {
+  max-width: var(--measure);
+  margin: 3rem auto 0;
+  padding-top: 1.3rem;
+  border-top: 1px solid var(--rule);
+}
+
+.password-box {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0.4rem 0 1.6rem;
+}
+
+.password-input {
+  display: block;
+  width: 100%;
+  margin-top: 0.6rem;
+  border: 0;
+  border-bottom: 1px solid var(--signal);
+  background: transparent;
+  padding: 0.45rem 0 0.6rem;
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  color: var(--ink);
+  outline: none;
+}
+
+.password-submit {
+  display: inline-block;
+  margin-top: 1.1rem;
+  font-size: var(--text-micro);
+  letter-spacing: 0.12em;
+}
+
+.password-error {
+  margin-top: 0.8rem;
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  color: var(--danger);
+}
+
+.comment-title {
+  margin: 0 0 1rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--signal);
+}
+
+.comment-note {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* ——— archive ——— */
+
+.archive-block {
+  margin-top: 0.2rem;
+}
+
+.archive-year {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 0.9rem;
+  margin: 2.4rem 0 0.5rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid var(--ink);
+}
+
+.archive-year-roman {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  color: var(--seal);
+}
+
+.archive-year-line {
+  height: 1px;
+  background: var(--rule);
+}
+
+.archive-year-arabic {
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  letter-spacing: 0.16em;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.archive-month {
+  margin: 1.1rem 0 0.15rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  letter-spacing: 0.2em;
+  color: var(--muted);
+}
+
+.archive-row {
+  display: grid;
+  /* 4.8rem holds the widest fmtDateShort shape ("08 нояб.", "08. Nov.",
+     "11月08日", "08 de nov.", "08 نوفمبر") on one line at 17px root. */
+  grid-template-columns: minmax(4.8rem, auto) 1fr;
+  gap: 0.9rem;
+  padding: 0.3rem 0;
+  align-items: baseline;
+}
+
+.archive-date {
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  letter-spacing: 0.12em;
+  color: var(--signal);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.archive-title {
+  font-family: var(--font-serif);
+  font-size: 0.97rem;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+.archive-title a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.18em;
+}
+
+.archive-title a:hover {
+  color: var(--link);
+  text-decoration-color: var(--signal);
+}
+
+.archive-unknown {
+  margin-top: 1.2rem;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  letter-spacing: 0.08em;
+}
+
+/* ——— tag index ——— */
+
+.tag-index {
+  margin-top: 2.6rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--rule);
+}
+
+.tag-index-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 1.1rem;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--seal);
+}
+
+.tag-index-title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+
+.tag-index-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  gap: 0 1.6rem;
+}
+
+.tag-index-item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink-2);
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+
+.tag-index-item:hover {
+  color: var(--link);
+  border-bottom-color: var(--signal);
+}
+
+.tag-index-item .name {
+  font-family: var(--font-serif);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tag-index-item .count {
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.tag-index-item--lg .name { font-size: 1.1rem; }
+.tag-index-item--md .name { font-size: 1rem; }
+.tag-index-item--sm .name { font-size: 0.9rem; }
+
+/* ——— friends ——— */
+
+.friends {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 0 2rem;
+  margin-top: 0.4rem;
+}
+
+.friend {
+  display: flex;
+  gap: 0.9rem;
+  align-items: flex-start;
+  padding: 1.05rem 0;
+  border-top: 1px solid var(--rule);
+}
+
+.friend-icon {
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--rule-2);
+  padding: 2px;
+  object-fit: cover;
+  background: var(--panel-2);
+}
+
+.friend-icon--empty {
+  display: grid;
+  place-items: center;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: var(--signal);
+}
+
+.friend-body {
+  min-width: 0;
+}
+
+.friend-name {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color: var(--ink);
+  border-bottom: 1px solid transparent;
+}
+
+.friend-name:hover {
+  color: var(--link);
+  border-bottom-color: var(--signal);
+}
+
+.friend-desc {
+  margin: 0.22rem 0 0;
+  font-family: var(--font-ui);
+  font-size: 0.77rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.friend-note {
+  margin-top: 1.8rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.92rem;
+  color: var(--ink-2);
+}
+
+/* ——— search overlay ——— */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: min(12vh, 6rem) 1rem 2rem;
+  background: var(--veil);
+  backdrop-filter: blur(4px);
+}
+
+.search-sheet {
+  position: relative;
+  width: min(42rem, 100%);
+  /* 100vh fallback first: the dvh line wins where dynamic viewport units are
+     supported, so the sheet never hides its lower edge behind collapsed
+     browser chrome on phones. */
+  max-height: calc(100vh - 8rem);
+  max-height: calc(100dvh - 8rem);
+  overflow-y: auto;
+  padding: 2.2rem clamp(1.2rem, 3vw, 2.4rem) 2rem;
+  background: var(--panel);
+  color: var(--ink);
+  border: 1px solid var(--rule-2);
+  border-top: 2px solid var(--ink);
+  box-shadow: var(--shadow-panel);
+}
+
+.overlay-close,
+.viewer-close {
+  position: absolute;
+  top: 0.6rem;
+  inset-inline-end: 0.8rem;
+  width: 2rem;
+  height: 2rem;
+  color: var(--muted);
+  font-family: var(--font-ui);
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.overlay-close:hover,
+.viewer-close:hover {
+  color: var(--link);
+}
+
+.search-input {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid var(--ink);
+  background: transparent;
+  padding: 0.5rem 0 0.7rem;
+  font-family: var(--font-serif);
+  /* Fixed 1.6rem clips the longer en/ar/de/ru placeholders at 390px (and zh at
+     320px); the clamp shrinks with the viewport so the query text never starts
+     off-sheet. */
+  font-size: clamp(1.05rem, 4.2vw, 1.6rem);
+  color: var(--ink);
+  outline: none;
+  text-overflow: ellipsis;
+}
+
+.search-input::placeholder {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.search-results {
+  margin-top: 1.4rem;
+}
+
+.search-result {
+  display: block;
+  padding: 0.95rem 0;
+  border-top: 1px solid var(--rule);
+}
+
+.search-result:hover {
+  color: inherit;
+}
+
+/* Keyboard highlight for the ArrowUp/ArrowDown navigation in V.openSearch.
+   :focus-visible alone would not show, because focus stays in the input. */
+.search-result.is-active {
+  background: var(--panel-2);
+  box-shadow: inset 2px 0 0 var(--signal);
+}
+
+.result-no {
+  display: inline-block;
+  margin-inline-end: 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  color: var(--seal);
+  vertical-align: 0.1em;
+}
+
+.search-result-title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.search-result:hover .search-result-title {
+  color: var(--link);
+  text-decoration: underline;
+  text-decoration-color: var(--signal);
+  text-underline-offset: 0.18em;
+}
+
+.search-result-excerpt {
+  margin: 0.3rem 0 0;
+  font-size: 0.84rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.search-empty {
+  padding: 1.2rem 0;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+/* ——— image viewer ——— */
+
+.viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 95;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  padding: 2rem;
+  background: rgba(10, 9, 7, 0.94);
+}
+
+.viewer img {
+  max-width: 92vw;
+  max-height: 82vh;
+  border: 1px solid var(--signal);
+}
+
+.viewer-caption {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+  color: var(--on-wall-muted);
+  text-align: center;
+}
+
+.viewer-close {
+  color: var(--on-wall-muted);
+}
+
+/* ——— 404 ——— */
+
+.not-found {
+  text-align: start;
+  padding: 1rem 0 0.5rem;
+}
+
+.not-found-code {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(3.4rem, 9vw, 5.4rem);
+  line-height: 0.95;
+  color: var(--seal);
+  letter-spacing: -0.02em;
+}
+
+.not-found-text {
+  margin: 0.8rem 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.not-found-link {
+  display: inline-block;
+  margin-top: 1.6rem;
+  color: var(--ink);
+  border-bottom: 1px solid var(--signal);
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* ——— code highlighting (palette-matched, no CDN theme) ——— */
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-section {
+  color: var(--seal);
+}
+
+.hljs-string,
+.hljs-attr,
+.hljs-template-string {
+  color: var(--success);
+}
+
+.hljs-number,
+.hljs-title,
+.hljs-name,
+.hljs-attribute {
+  color: var(--warn);
+}
+
+.hljs-comment {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.hljs-built_in,
+.hljs-type,
+.hljs-function {
+  color: var(--signal);
+}
+
+.hljs-operator,
+.hljs-punctuation {
+  color: var(--ink-2);
+}
+
+/* ——— responsive view details ——— */
+
+@media (max-width: 860px) {
+  .entry {
+    grid-template-columns: 4.2rem minmax(0, 1fr);
+  }
+  .entry-side {
+    display: none;
+  }
+  .lead {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  /* single column here, but the ledger still has its NO. gutter: hold the
+     lead's copy on the same axis as the entry titles (4.2rem + 1.5rem, minus
+     the 3px stripe gutter the lead already carries) */
+  .lead-body {
+    padding-inline-start: calc(4.2rem + 1.5rem - 3px);
+  }
+  .lead-fig {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-inline-end: 0;
+    border-bottom: 1px solid var(--rule);
+    padding: 0 0 0.6rem;
+  }
+  /* the divider is horizontal here, so the vertical feather is not used */
+  .lead-fig::after {
+    display: none;
+  }
+  .lead-no {
+    writing-mode: horizontal-tb;
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+}
+
+/* Between 641px and 768px the section head still has room for the meta line's
+   grid track but not for its nowrap date range, which bleeds up to ~49px past
+   the sheet's right edge — so the meta stays hidden across the whole tablet
+   band, not just on phones. */
+@media (max-width: 768px) {
+  .sec-head-meta {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .stamp { display: none; }
+  .article-kicker { padding-inline-end: 0; }
+  .sec-head {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+  .entry {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+    padding: 1.3rem 0 1.45rem;
+  }
+  .entry-no { padding-top: 0; }
+  .entry-excerpt { font-size: 0.9rem; }
+  .lead {
+    /* single column here, so the body must sit on the entries' axis — which is
+       flush with the sheet's text edge. No inline-start inset: the stripe moves
+       outside the box instead of pushing the text inward. */
+    padding-block: 1.2rem 1.3rem;
+    padding-inline: 1.1rem;
+    padding-inline-start: 0;
+  }
+  .lead-body {
+    padding-inline-start: 0;
+  }
+  .lead::after {
+    /* the lead's text is flush with the sheet's text edge here, so the stripe
+       overhangs into the sheet's own padding instead of the text column */
+    inset-inline-start: -2px;
+    width: 2px;
+  }
+  /* the announcement stripe steps out by the same 2px so the two vertical
+     marks above and below stack on one x */
+  .announcement::before {
+    inset-inline-start: -2px;
+  }
+  .lead-title { font-size: 1.55rem; }
+  .prevnext {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+  .prevnext-item--next { text-align: start; }
+  .archive-row { grid-template-columns: minmax(4.8rem, auto) 1fr; }
+  .friends { grid-template-columns: 1fr; }
+  .article-catalog { grid-template-columns: 1fr 1fr; }
+  /* Two fixed columns, so a cell is in the second column exactly when it is
+     even and in a later row exactly when it follows the first pair. Written
+     that way round — "second column" instead of "the previous cell drops its
+     end border" — every boundary gets exactly one 1px rule for any cell count:
+     a 5-cell catalog (REVISED present) no longer leaves cells 3-4 with no
+     bottom rule, and cells 1-2 no longer meet in a 2px double divider.
+     All of it is logical, so RTL mirrors without extra rules. */
+  .catalog-cell {
+    padding-inline-end: 0.9rem;
+    border-inline-end: 0;
+  }
+  .catalog-cell + .catalog-cell { padding-inline-start: 0; }
+  .catalog-cell:nth-child(even) {
+    padding-inline-start: 0.9rem;
+    border-inline-start: 1px solid var(--rule);
+  }
+  .catalog-cell:nth-child(n + 3) { border-block-start: 1px solid var(--rule); }
+  /* An odd cell count leaves one cell alone on the final row. Spanning it
+     across both columns keeps its top rule full width instead of ending in
+     mid-air above an empty slot. `:last-child:nth-child(odd)` is a structural
+     fact in a two-column grid, not a parity guess. */
+  .catalog-cell:last-child:nth-child(odd) { grid-column: 1 / -1; }
+}

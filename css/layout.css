@@ -1,0 +1,858 @@
+/* Antiphon v2 · The Institute — masthead, panel, footer */
+
+#site {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+}
+
+/* page field: dot lattice, not paper grid — quieter than v2's 24px squares */
+
+body {
+  background-color: var(--wall);
+  background-image:
+    radial-gradient(var(--grid-dot) 0.9px, transparent 1px);
+  background-size: 22px 22px;
+  background-position: -1px -1px;
+  background-attachment: fixed;
+}
+
+body.has-wall-image {
+  background-image: linear-gradient(var(--veil), var(--veil)), var(--wall-image);
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
+
+/* ——— masthead ——— */
+
+#masthead {
+  position: relative;
+  max-width: var(--panel-max);
+  margin: 0 auto;
+  padding: clamp(2rem, 4vw, 3.4rem) var(--gutter) 0;
+  text-align: start;
+}
+
+.masthead-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.8rem 1.5rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--on-wall);
+}
+
+.sys-line {
+  display: flex;
+  flex: 1 1 20rem;
+  align-items: center;
+  gap: 0.45rem 1.1rem;
+  margin: 0;
+  min-width: 0;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--on-wall-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.sys-line strong {
+  font-weight: 600;
+  color: var(--on-wall);
+  letter-spacing: 0.18em;
+}
+
+.sys-line .protocol {
+  margin-inline-start: auto;
+  white-space: nowrap;
+  color: var(--signal);
+}
+
+.led {
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--signal-led);
+  box-shadow: 0 0 0 1px rgba(194, 102, 60, 0.28), 0 0 6px var(--signal-led);
+  animation: led 4.5s ease-in-out infinite;
+}
+
+@keyframes led {
+  0%,
+  100% { opacity: 1; }
+  50% { opacity: 0.24; }
+}
+
+.masthead-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.icon-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  color: var(--on-wall-muted);
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+
+.icon-btn:hover {
+  color: var(--seal);
+  border-bottom-color: var(--seal);
+}
+
+.icon-btn svg {
+  width: 0.95rem;
+  height: 0.95rem;
+  display: block;
+}
+
+.masthead-brand {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 1rem 2.5rem;
+  padding: clamp(1.6rem, 3vw, 2.6rem) 0 clamp(1.3rem, 2.4vw, 2rem);
+}
+
+.blog-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--text-display);
+  line-height: 1.02;
+  letter-spacing: var(--script-title-tracking, 0.02em);
+  color: var(--on-wall);
+  text-wrap: balance;
+}
+
+/* Japanese display type: proportional kana metrics close the holes the kanji
+   grid opens up at masthead sizes */
+
+body[data-script="ja"] .blog-title,
+body:not([data-script]):lang(ja) .blog-title {
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "palt" 1, "vpal" 1;
+}
+
+/* Latin mastheads sit optically tight and a shade flatter than the CJK setting */
+
+body[data-script="latin"] .blog-title,
+body:not([data-script]):lang(en) .blog-title {
+  line-height: 0.98;
+}
+
+body[data-script="latin"] .blog-subtitle,
+body:not([data-script]):lang(en) .blog-subtitle {
+  font-size: 1.02rem;
+  max-width: 30rem;
+  line-height: 1.6;
+}
+
+.blog-title a {
+  color: inherit;
+  transition: color var(--dur) var(--ease);
+}
+
+.blog-title a:hover {
+  color: var(--seal);
+}
+
+.blog-subtitle {
+  margin: 0.75rem 0 0;
+  max-width: 34rem;
+  font-family: var(--font-serif);
+  font-size: 0.98rem;
+  line-height: 1.7;
+  font-style: italic;
+  letter-spacing: 0.005em;
+  color: var(--on-wall-muted);
+}
+
+/* masthead end-side stamp: a small institutional mark. It is pinned to the
+   inline end rather than the physical right so the block moves to the left in
+   RTL instead of colliding with the brand. */
+
+.masthead-mark {
+  align-self: end;
+  justify-self: end;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.35rem;
+  padding-bottom: 0.15rem;
+  font-family: var(--font-mono);
+  font-size: 0.63rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--on-wall-muted);
+  text-align: end;
+  white-space: nowrap;
+}
+
+.masthead-mark .mark-sigil {
+  color: var(--signal);
+}
+
+.masthead-mark .mark-rule {
+  width: 2.6rem;
+  height: 1px;
+  background: var(--wall-rule);
+}
+
+.masthead-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 1.75rem;
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--wall-rule);
+  border-bottom: 1px solid var(--on-wall);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--on-wall-muted);
+}
+
+.masthead-nav a {
+  position: relative;
+  display: inline-block;
+  padding: 0.25rem 0;
+  border-bottom: 1px solid transparent;
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+
+.masthead-nav a:hover {
+  color: var(--seal);
+  border-bottom-color: var(--seal);
+}
+
+.masthead-nav a.is-active {
+  color: var(--on-wall);
+  border-bottom-color: var(--signal);
+}
+
+.masthead-nav .nav-tail {
+  margin-inline-start: auto;
+  color: var(--wall-rule);
+  letter-spacing: 0.14em;
+}
+
+/* ——— panel ——— */
+
+#main {
+  padding: 0 var(--gutter) 5rem;
+}
+
+.panel {
+  position: relative;
+  z-index: 1;
+  max-width: var(--panel-max);
+  margin: 0 auto;
+  padding: clamp(1.6rem, 4vw, 3.6rem) clamp(1.3rem, 4vw, 3.6rem) clamp(2rem, 4vw, 4rem);
+  background: var(--panel);
+  color: var(--ink);
+  /* The sheet has no cut edge: left and right fade into the wall, so the paper
+     dissolves instead of stopping. The mask keeps the top edge crisp (it is a
+     document head) and leaves the bottom to the page. */
+  --edge-fade: clamp(14px, 3vw, 38px);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 var(--edge-fade), #000 calc(100% - var(--edge-fade)), transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 var(--edge-fade), #000 calc(100% - var(--edge-fade)), transparent 100%);
+  /* no side borders: the vertical rules are painted as feathered strokes below.
+     The mask above also clips any drop shadow, which we want — the sheet sits on
+     the desk by fading into it, not by floating above it. */
+  border: 0;
+  animation: panel-in 340ms var(--ease) both;
+}
+
+/* ——— feathered sheet edges ———
+   The paper does not stop at a hairline. Three stacked layers do the work:
+   1) .panel::before  faint inner light + lateral veil that softens ink near the edges
+   2) .panel::after   paper grain
+   3) .panel-edge     side rules masked with a vertical alpha falloff
+   Nothing has a radius; the transition is atmospheric, not a card. */
+
+.panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, var(--panel-2), transparent 7rem),
+    linear-gradient(90deg, var(--edge-veil), transparent 84px),
+    linear-gradient(270deg, var(--edge-veil), transparent 84px);
+  opacity: 0.38;
+}
+
+.panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: var(--noise);
+  opacity: 0.045;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.panel-edge {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  z-index: 2;
+  pointer-events: none;
+  background: var(--rule);
+  opacity: 0.55;
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 12%, #000 86%, transparent);
+  mask-image: linear-gradient(180deg, transparent, #000 12%, #000 86%, transparent);
+}
+
+.panel-edge--left { inset-inline-start: calc(var(--edge-fade) - 1px); }
+.panel-edge--right { inset-inline-end: calc(var(--edge-fade) - 1px); }
+
+/* top edge: a hairline that dissolves horizontally at both ends */
+.panel-top {
+  position: absolute;
+  top: 0;
+  inset-inline: 0;
+  height: 2px;
+  z-index: 2;
+  pointer-events: none;
+  background: var(--on-wall);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+}
+
+.panel-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.panel-status {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.3rem 1.2rem;
+  margin: 0 0 clamp(1.4rem, 3vw, 2.4rem);
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--font-mono);
+  font-size: 0.63rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.panel-status > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.panel-status .status-kind {
+  color: var(--seal);
+}
+
+/* registration ticks are no longer used; the sheet edges are feathered instead */
+
+@keyframes panel-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ——— article + marginalia ———
+   The reading column must sit on the page's own centre line, which is what the
+   index route already does with a plain max-width sheet. It cannot be achieved
+   by centring a wider two-column block: that block's centre is the viewport's,
+   but the panel inside it is half a marginalia off-axis, which is the sideways
+   jump the reader sees when navigating home → article.
+
+   So the panel gets its own centred track and the note moves into the outer
+   gutter. Both outer tracks are the *same* `1fr`, which keeps the middle track
+   on the viewport axis without any [dir] override: grid tracks are laid out in
+   the inline direction, so the note lands on the inline-end side in RTL too,
+   and no hardcoded column order is involved. The middle track is capped at the
+   same --panel-max the home panel uses, so the text column does not re-wrap
+   when the route changes. */
+
+.article-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, var(--panel-max)) minmax(0, 1fr);
+  align-items: start;
+  /* #main's gutter is reclaimed here because the note needs every pixel of the
+     outer track; the panel itself is capped at --panel-max, so cancelling the
+     padding does not change its width, only the room available beside it. */
+  margin-inline: calc(-1 * var(--gutter));
+}
+
+.article-layout .panel {
+  grid-column: 2;
+  margin: 0;
+  max-width: none;
+  width: 100%;
+}
+
+.marginalia {
+  grid-column: 3;
+  /* The note fills its outer track and never grows past the old column width.
+     The inline-start padding is the optical gap from the sheet; the smaller
+     inline-end padding keeps the last glyph off the viewport edge on the widest
+     screens. A grid `gap` would have been simpler but it also eats the middle
+     track's budget, and the sheet's width has to keep matching the index route
+     exactly. */
+  width: 100%;
+  max-width: 12.5rem;
+  padding-inline: 1.2rem 0.6rem;
+  position: sticky;
+  top: 5.5rem;
+  padding-top: 3.6rem;
+  color: var(--on-wall-muted);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  line-height: 1.75;
+}
+
+.marginalia-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.9rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--on-wall);
+  font-family: var(--font-mono);
+  font-size: 0.63rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--on-wall);
+}
+
+.marginalia-title::before {
+  content: "";
+  width: 4px;
+  height: 4px;
+  background: var(--signal);
+}
+
+.marginalia a {
+  display: block;
+  margin-inline-start: -0.65rem;
+  padding-block: 0.3rem;
+  padding-inline: 0.65rem 0;
+  color: var(--on-wall-muted);
+  border-inline-start: 1px solid transparent;
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+
+.marginalia a:hover {
+  color: var(--seal);
+  border-inline-start-color: var(--seal);
+}
+
+.marginalia a.is-sub {
+  padding-inline-start: 1.45rem;
+  font-size: 0.65rem;
+  opacity: 0.85;
+}
+
+/* The heading currently in the reading band. Colour plus the leading rule,
+   which is already the hover affordance, so the active state is the same
+   gesture held rather than a second visual language. */
+.marginalia a.is-active {
+  color: var(--seal);
+  border-inline-start-color: var(--seal);
+}
+
+/* ——— inline contents for narrow viewports ———
+   .marginalia is hidden below 1340px because the outer gutter can no longer
+   hold a readable note. This <details> takes its place inside the sheet,
+   directly under the catalog card, and is hidden again at the width where the
+   margin note returns. Desktop-only by construction: no JS branching on width,
+   so the two presentations cannot disagree. */
+.toc-inline {
+  display: none;
+  max-width: var(--measure);
+  margin: 1.4rem auto 0;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.toc-inline > summary {
+  cursor: pointer;
+  padding-block: 0.45rem;
+  border-block: 1px solid var(--rule);
+  color: var(--seal);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  list-style: none;
+}
+
+.toc-inline > summary::-webkit-details-marker { display: none; }
+
+.toc-inline > summary::before {
+  content: "▸";
+  display: inline-block;
+  margin-inline-end: 0.55rem;
+  transition: transform var(--dur) var(--ease);
+}
+
+.toc-inline[open] > summary::before { transform: rotate(90deg); }
+
+.toc-inline ol {
+  margin: 0.5rem 0 0;
+  padding-inline-start: 0;
+  list-style: none;
+}
+
+.toc-inline li {
+  margin: 0;
+  padding-block: 0.22rem;
+  border-bottom: 1px dotted var(--rule);
+}
+
+.toc-inline li.is-sub {
+  padding-inline-start: 1.2rem;
+  opacity: 0.85;
+}
+
+.toc-inline a { color: inherit; text-decoration: none; }
+.toc-inline a:hover { color: var(--seal); }
+
+/* matches the marginalia collapse breakpoint in the responsive block below:
+   under it the in-panel TOC takes over */
+@media (max-width: 1360px) {
+  .toc-inline { display: block; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toc-inline > summary::before { transition: none; }
+}
+
+/* ——— footer ——— */
+
+#footer {
+  padding: 0 var(--gutter) 3.2rem;
+  color: var(--on-wall-muted);
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.16em;
+  line-height: 2;
+  text-align: start;
+  text-transform: uppercase;
+}
+
+.footer-inner {
+  max-width: var(--panel-max);
+  margin: 0 auto;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--on-wall);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 0.35rem 2rem;
+  align-items: baseline;
+}
+
+.footer-brand.footer-colophon {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  grid-column: 1 / -1;
+  margin: 0 0 0.55rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid var(--wall-rule);
+  color: var(--on-wall);
+  letter-spacing: 0.22em;
+}
+
+.footer-colophon .sigil {
+  flex: 0 0 auto;
+  display: block;
+  color: var(--signal);
+}
+
+.footer-license {
+  margin: 0;
+  color: var(--on-wall-muted);
+  letter-spacing: 0.04em;
+  text-transform: none;
+  font-family: var(--font-ui);
+  font-size: 0.74rem;
+}
+
+.footer-brand {
+  margin: 0;
+  color: var(--on-wall-muted);
+  letter-spacing: 0.18em;
+  font-size: var(--text-micro);
+}
+
+/* The Atom link is small text on the wall, so it cannot ride on --signal: clay
+   at #C2663C only reaches 3.32:1 there. This is the same hue stepped down in
+   lightness until it clears AA, which lands at 5.10:1 on --wall and 4.70:1 even
+   on the darker --wall-2. It is declared here rather than as a new token
+   because it is the footer's own adjustment, not a palette entry. */
+.footer-brand a {
+  color: #A24528;
+  border-bottom: 1px solid var(--wall-rule);
+  padding-bottom: 1px;
+}
+
+body[data-mode="night"] .footer-brand a {
+  color: var(--signal);
+}
+
+.footer-brand a:hover {
+  border-bottom-color: var(--signal);
+}
+
+.visitor {
+  margin: 0;
+  color: var(--on-wall-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.log-line {
+  grid-column: 1 / -1;
+  margin: 1.1rem 0 0;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--wall-rule);
+  color: var(--on-wall-muted);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: none;
+  line-height: 1.9;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 1.4rem;
+  justify-content: space-between;
+}
+
+.log-line span {
+  white-space: nowrap;
+}
+
+.footer-bottom {
+  grid-column: 1 / -1;
+  max-width: 38rem;
+  margin: 1.2rem 0 0;
+  color: var(--on-wall);
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  line-height: 1.85;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.footer-bottom a {
+  color: var(--link);
+  border-bottom: 1px solid var(--wall-rule);
+}
+
+.footer-bottom a:hover {
+  border-bottom-color: var(--seal);
+}
+
+/* ——— loading ——— */
+
+#loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 56vh;
+  color: var(--on-wall-muted);
+  font-family: var(--font-mono);
+  font-size: 0.63rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.loading-sigil {
+  width: 108px;
+  height: 108px;
+  margin-bottom: 1.3rem;
+  color: var(--signal);
+}
+
+#loading p {
+  margin: 0;
+  animation: pulse-text 2.4s ease-in-out infinite;
+}
+
+@keyframes pulse-text {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 1; }
+}
+
+/* ——— reading progress rail ———
+   a single hairline at the top of the viewport. it fills like a scanner head. */
+
+.progress-rail {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 60;
+  height: 2px;
+  background: transparent;
+  pointer-events: none;
+}
+
+.progress-rail > span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--signal);
+  opacity: 0.85;
+  transition: width 90ms linear;
+}
+
+/* ——— back to top ——— */
+
+.back-to-top {
+  position: fixed;
+  inset-inline-end: 1.4rem;
+  bottom: 1.4rem;
+  z-index: 20;
+  width: 2.1rem;
+  height: 2.1rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--wall-rule);
+  background: var(--wall);
+  color: var(--on-wall-muted);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+
+.back-to-top:hover {
+  color: var(--seal);
+  border-color: var(--seal);
+}
+
+/* ——— responsive ——— */
+
+@media (max-width: 1360px) {
+  /* Below this width the outer gutter can no longer hold a readable note (the
+     sheet alone is --panel-max, so anything narrower leaves the note column
+     under ~8rem). Collapse to the single centred sheet the index route uses;
+     the panel keeps its full width, so text does not re-wrap on navigation.
+     1360 rather than 1339: with a 15px scrollbar a 1340px window leaves
+     clientWidth 1325px, where long titles like MARGINALIEN made the note 121px
+     and pushed scrollWidth to 1327px — a 2px horizontal overflow. */
+  .article-layout {
+    display: block;
+    max-width: var(--panel-max);
+    margin: 0 auto;
+  }
+  .marginalia { display: none; }
+}
+
+@media (max-width: 900px) {
+  .masthead-brand {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .masthead-mark {
+    justify-self: start;
+    align-items: flex-start;
+    text-align: start;
+  }
+  .panel {
+    padding: 2rem 1.4rem 2.4rem;
+  }
+}
+
+@media (max-width: 640px) {
+  #masthead {
+    padding: 1.6rem 1.1rem 0;
+  }
+  .blog-title {
+    font-size: clamp(1.85rem, 9vw, 2.4rem);
+  }
+  .blog-subtitle {
+    font-size: 0.9rem;
+  }
+  .masthead-nav {
+    gap: 0.3rem 1.1rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
+  }
+  .masthead-nav .nav-tail { display: none; }
+  .sys-line {
+    flex-basis: 100%;
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+  }
+  .sys-line .protocol { margin-inline-start: 0; }
+  .masthead-actions { margin-inline-start: auto; }
+  #main { padding: 0 0.85rem 3rem; }
+  .panel {
+    padding: 1.35rem 1.15rem 1.8rem;
+    /* narrow screens sit close to the edge, so the lateral fade shrinks
+       instead of eating into the text column */
+    --edge-fade: 10px;
+  }
+  .panel-status {
+    font-size: 0.57rem;
+    letter-spacing: 0.12em;
+  }
+  /* on narrow screens the sheet fills the page, so the feathering narrows */
+  .panel::before {
+    background:
+      linear-gradient(180deg, var(--panel-2), transparent 4rem),
+      linear-gradient(90deg, var(--edge-veil), transparent 1.4rem),
+      linear-gradient(270deg, var(--edge-veil), transparent 1.6rem);
+  }
+  #footer { padding: 0 1.1rem 2.4rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .led,
+  #loading p {
+    animation: none;
+  }
+  .panel {
+    animation: none;
+  }
+}
+
+/* ——— touch ergonomics ——— */
+
+@media (pointer: coarse) {
+  /* Finger-sized targets: the masthead and viewer controls sit at 2.1rem
+     (~34px), well under the ~44px comfort mark. Size and padding only — the
+     hover/press transforms elsewhere stay untouched. */
+  .icon-btn,
+  .overlay-close,
+  .viewer-close,
+  .back-to-top {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+  .masthead-nav a {
+    padding: 0.4rem 0;
+  }
+}
