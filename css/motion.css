@@ -1,0 +1,661 @@
+/* Antiphon v2 · motion
+   The rest of the theme moves like a printed sheet being handled: light fades,
+   rules fill, nothing bounces. This file adds movement in that same register —
+   a reading reveal, a hairline that fills under the pointer, a scanline that
+   travels across the masthead, and a rule that draws itself under a section
+   label.
+
+   Every effect here is additive decoration: with `prefers-reduced-motion` on,
+   the elements sit in their final state and nothing is hidden.
+
+   NOTE on selectors: the view markup nests as
+     #main > .panel > .panel-inner > section.home > .entry-list > article.entry
+   so descendant selectors are used deliberately rather than `>` chains that
+   assume a flat structure. `.motion-reveal` is applied to #main by router.js. */
+
+/* ——— reading reveal ———
+   A short opacity/translate lift so the page arrives like a sheet being laid
+   down rather than a UI sliding in. */
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(7px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* the ledger rows follow the sheet, a few at a time.
+   `--i` is written by the renderer (js/views.js) on every row it emits, because
+   the row index inside its parent is not one: an archive month wraps its rows
+   after a year header and a month header, and the friends grid interleaves
+   cards with prose. Keying the delay off a counter the renderer already knows
+   survives any change to that nesting, and `min()` caps the ladder so a long
+   archive does not end with a ten-second entrance. */
+.motion-reveal .entry-list > .entry {
+  animation: reveal 460ms var(--ease) both;
+}
+
+.motion-reveal .entry-list > .entry:nth-child(1) { animation-delay: 60ms; }
+.motion-reveal .entry-list > .entry:nth-child(2) { animation-delay: 110ms; }
+.motion-reveal .entry-list > .entry:nth-child(3) { animation-delay: 160ms; }
+.motion-reveal .entry-list > .entry:nth-child(4) { animation-delay: 210ms; }
+.motion-reveal .entry-list > .entry:nth-child(5) { animation-delay: 260ms; }
+.motion-reveal .entry-list > .entry:nth-child(n + 6) { animation-delay: 300ms; }
+
+.motion-reveal .lead { animation: reveal 440ms var(--ease) both; }
+
+/* archive and friends render their own row types rather than .entry, so each
+   gets the same lift with a lighter stagger — one rhythm across every view */
+.motion-reveal .archive-row {
+  animation: reveal 420ms var(--ease) both;
+  animation-delay: calc(min(var(--i, 0), 6) * 40ms);
+}
+
+.motion-reveal .friend {
+  animation: reveal 420ms var(--ease) both;
+  animation-delay: calc(min(var(--i, 0), 6) * 40ms);
+}
+
+.motion-reveal .article-catalog { animation: reveal 480ms var(--ease) 90ms both; }
+.motion-reveal .article-body { animation: reveal 500ms var(--ease) 150ms both; }
+
+/* ——— entry hover: the hairline fills ———
+   The row's bottom rule is redrawn from the left in clay, then released. This
+   is the ledger's one flourish; it replaces a colour flash on the title. */
+
+.entry {
+  position: relative;
+}
+
+.entry::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 1px;
+  background: var(--signal);
+  transform: scaleX(0);
+  transform-origin: inline-start;
+  opacity: 0;
+  transition:
+    transform var(--dur-slow) var(--ease),
+    opacity var(--dur) var(--ease);
+  pointer-events: none;
+}
+
+.entry:hover::after,
+.entry:focus-within::after {
+  transform: scaleX(1);
+  opacity: 0.55;
+}
+
+/* the row number and date lean toward the pointer a hair, no more */
+.entry-no,
+.entry-side {
+  transition: color var(--dur) var(--ease);
+}
+
+.entry:hover .entry-no,
+.entry:hover .entry-side {
+  color: var(--signal);
+}
+
+/* ——— section head: the rule draws out ———
+   `.sec-head-rule` grows from the inline-start edge, so INDEX · 目录 reads as a
+   hand ruling the line before the meta lands — and the same gesture runs from
+   the right when the page is Arabic. Keyed off the reveal class, so it fires
+   once per view rather than on any hover. */
+
+@keyframes draw-rule {
+  from { transform: scaleX(0); opacity: 0.2; }
+  to { transform: scaleX(1); opacity: 1; }
+}
+
+.motion-reveal .sec-head-rule {
+  /* the rule draws from the inline-start edge, so an RTL page rules it from the
+     right and the line still grows out of the label it belongs to */
+  transform-origin: inline-start;
+  animation: draw-rule 620ms var(--ease) 120ms both;
+}
+
+/* ——— masthead: the scanner sweep ———
+   A single soft band travels across the masthead, the way a scan head crosses a
+   page, pausing at the ends instead of looping abruptly. #masthead is already
+   position: relative in layout.css. */
+
+/* translateX percentages resolve against the band's own width, so a full
+   traverse needs a much larger figure than the container width suggests:
+   -110% parks it just off the leading edge, 420% carries it fully past the
+   trailing one. Anchoring is logical (inset-inline-start), so in RTL the band
+   begins at the right edge — and the mirrored keyframes below sweep it toward
+   the left edge, matching the direction the Arabic masthead is read in. A scan
+   head that crossed against the reading direction reads as a render bug. */
+@keyframes masthead-sweep {
+  0%, 14% { transform: translateX(-110%); opacity: 0; }
+  24% { opacity: 0.85; }
+  76% { opacity: 0.85; }
+  86%, 100% { transform: translateX(420%); opacity: 0; }
+}
+
+@keyframes masthead-sweep-rtl {
+  0%, 14% { transform: translateX(110%); opacity: 0; }
+  24% { opacity: 0.85; }
+  76% { opacity: 0.85; }
+  86%, 100% { transform: translateX(-420%); opacity: 0; }
+}
+
+#masthead::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  bottom: 0;
+  height: 1px;
+  width: 26%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--signal) 45%,
+    var(--signal-led) 55%,
+    transparent
+  );
+  opacity: 0;
+  animation: masthead-sweep 9s var(--ease) infinite;
+  pointer-events: none;
+}
+
+/* Arabic reads right to left, so the scan head crosses right to left with it.
+   Only the travel and the gradient are mirrored: the band stays anchored to the
+   inline-start edge, which is what keeps it inside the clipped masthead. */
+body[dir="rtl"] #masthead::after,
+body[data-script="arabic"] #masthead::after {
+  background: linear-gradient(
+    270deg,
+    transparent,
+    var(--signal) 45%,
+    var(--signal-led) 55%,
+    transparent
+  );
+  animation-name: masthead-sweep-rtl;
+}
+
+/* The band travels past the sheet edge, so the host has to clip it — otherwise
+   the translate creates a transient horizontal scrollbar on narrow viewports.
+   `clip` rather than `hidden`: it trims without making #masthead a scroll
+   container, which keeps sticky positioning elsewhere unaffected. */
+#masthead {
+  overflow-x: clip;
+}
+
+/* ——— signal divider: the node breathes ———
+   The clay dot between the two gradient rules pulses on the same slow clock as
+   the status LED, tying article body to instrument chrome. */
+
+@keyframes node-breathe {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.18); }
+}
+
+.signal-divider .node {
+  animation: node-breathe 6s ease-in-out infinite;
+}
+
+/* ——— prose links: the underline arrives ———
+   Inline prose links only; chrome labels keep their own borders. */
+
+.prose a {
+  text-decoration-color: transparent;
+  transition: text-decoration-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+.prose a:hover {
+  text-decoration-color: currentColor;
+}
+
+/* ——— status strip: the scan completes ———
+   A short tracking settle on the institutional header so the sheet's first line
+   reads as a scan finishing rather than appearing. */
+
+@keyframes status-in {
+  from { opacity: 0; letter-spacing: 0.06em; }
+  to { opacity: 1; }
+}
+
+.motion-reveal .panel-status {
+  animation: status-in 520ms var(--ease) both;
+}
+
+/* ——— plate arrival: figures in prose ———
+   Images are plates in a filed document, so they arrive on a second beat after
+   the body sheet has settled, and a mounting rule closes each plate. The rule
+   is absolutely positioned inside the figure's own margin, so its resting
+   state costs no layout: it is pure decoration that happens to stay. */
+
+.prose .prose-figure {
+  position: relative;
+}
+
+.prose .prose-figure::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--rule);
+  transform: scaleX(1);
+  transform-origin: left;
+  pointer-events: none;
+}
+
+body[dir="rtl"] .prose .prose-figure::after {
+  transform-origin: right;
+}
+
+.motion-reveal .prose .prose-figure {
+  animation: reveal 460ms var(--ease) 300ms both;
+}
+
+.motion-reveal .prose .prose-figure::after {
+  animation: draw-rule 620ms var(--ease) 340ms both;
+}
+
+/* ——— quote: the clay rule arrives ———
+   The blockquote's left rule fades in after its text has settled underneath
+   the body reveal. The text itself never moves — only the rule arrives. The
+   border side is logical, so an Arabic quote grows its rule from the right
+   without a mirrored keyframe. */
+
+@keyframes quote-rule {
+  from { border-inline-start-color: transparent; }
+  to { border-inline-start-color: var(--signal); }
+}
+
+.motion-reveal .prose blockquote {
+  animation: quote-rule 560ms var(--ease) 320ms both;
+}
+
+/* ——— tags and the password submit share the entry gesture ———
+   The same clay hairline that fills under a ledger row fills under a tag on
+   hover: one gesture, three surfaces. The static border yields while the fill
+   draws over it, so the line reads as redrawn rather than doubled. These are
+   hover states, not loops — at rest both sit at scaleX(0) and the underlying
+   borders are exactly what views.css paints. */
+
+.tag-link,
+.password-submit {
+  position: relative;
+}
+
+.tag-link::after,
+.password-submit::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 1px;
+  background: var(--signal);
+  transform: scaleX(0);
+  transform-origin: left;
+  opacity: 0;
+  transition:
+    transform var(--dur-slow) var(--ease),
+    opacity var(--dur) var(--ease);
+  pointer-events: none;
+}
+
+body[dir="rtl"] .tag-link::after,
+body[dir="rtl"] .password-submit::after {
+  transform-origin: right;
+}
+
+.tag-link:hover::after,
+.tag-link:focus-visible::after,
+.password-submit:hover::after,
+.password-submit:focus-visible::after {
+  transform: scaleX(1);
+  opacity: 0.55;
+}
+
+.tag-link:hover,
+.tag-link:focus-visible,
+.password-submit:hover,
+.password-submit:focus-visible {
+  border-bottom-color: transparent;
+}
+
+/* ——— unlock: the revealed body settles deeper ———
+   bindPassword marks .article-body with .is-unlocked once the plaintext has
+   replaced the sealed blob; changing the animation-name restarts the reveal
+   with a deeper lift on the same curve. No timers, no JS state beyond the
+   one class. */
+
+@keyframes reveal-deep {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+.motion-reveal .article-body.is-unlocked {
+  animation: reveal-deep 600ms var(--ease) both;
+}
+
+/* ——— search overlay: the sheet is laid down ———
+   The veil is already there; the sheet itself arrives with the reading lift,
+   and the input's rule fades in on the status-strip rhythm so the field reads
+   as ruled before the first result lands. Both replay on every open because
+   the overlay is display:none between uses. Result rows are deliberately not
+   animated: V.renderSearch rewrites them on every keystroke, and a stagger
+   there would flicker while typing. */
+
+#search-overlay .search-sheet {
+  animation: reveal 460ms var(--ease) both;
+}
+
+@keyframes rule-arrive {
+  from { border-bottom-color: transparent; }
+  to { border-bottom-color: var(--ink); }
+}
+
+#search-overlay .search-input {
+  animation: rule-arrive 520ms var(--ease) 120ms both;
+}
+
+/* ——— archive years: the section head's two beats ———
+   The year line draws from the inline-start edge like .sec-head-rule, and the
+   mono count settles its tracking like .panel-status. Same durations, so the
+   archive speaks the same sentence as every other ruled head. */
+
+.motion-reveal .archive-year-line {
+  transform-origin: left;
+  animation: draw-rule 620ms var(--ease) 120ms both;
+}
+
+body[dir="rtl"] .motion-reveal .archive-year-line {
+  transform-origin: right;
+}
+
+.motion-reveal .archive-year-arabic {
+  animation: status-in 520ms var(--ease) both;
+}
+
+/* ——— back to top: arrives with the sheet, not before it ———
+   The button is toggled with the hidden attribute (a display flip), so a
+   transition cannot run; an animation keyed to :not([hidden]) fires exactly
+   when it is summoned past a viewport and a half. */
+
+#back-to-top:not([hidden]) {
+  animation: reveal 460ms var(--ease) both;
+}
+
+/* ——— quiet spectacle · the second printing pass ———
+   Scroll timelines are enhancement only; all text rests fully visible. */
+
+/* 1 · vertical rules register against the viewport, from the head of the sheet */
+@keyframes edge-register {
+  from { transform: scaleY(0.06); opacity: 0.08; }
+  to { transform: scaleY(1); opacity: 0.55; }
+}
+
+@supports (animation-timeline: view()) {
+  .motion-reveal .panel-edge {
+    transform-origin: top;
+    animation: edge-register linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 65%;
+  }
+}
+
+/* 2 · ink settles into the heading without ever disappearing.
+   Above-fold headings finish on mount; prose headings register as they enter. */
+@keyframes ink-settle {
+  from {
+    clip-path: inset(-0.15em calc(100% - 12px) -0.15em 0);
+    opacity: 0.35;
+    transform: translateX(-10px);
+  }
+  to { clip-path: inset(-0.15em 0); opacity: 1; transform: none; }
+}
+
+.motion-reveal .article-title,
+.motion-reveal .sec-head-title {
+  animation: ink-settle 780ms var(--ease) 70ms both;
+}
+
+@supports (animation-timeline: view()) {
+  .motion-reveal .prose h2,
+  .motion-reveal .prose h3 {
+    animation: ink-settle linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 55%;
+  }
+}
+
+/* 3 · catalog cells arrive as records being collated, not a card cascade */
+@keyframes register-row {
+  from { opacity: calc(var(--row-opacity, 1) * 0.35); transform: translateY(8px); }
+  to { opacity: var(--row-opacity, 1); transform: none; }
+}
+
+.motion-reveal .catalog-cell { animation: register-row 520ms var(--ease) 160ms both; }
+
+.motion-reveal .catalog-cell:nth-child(2) { animation-delay: 215ms; }
+.motion-reveal .catalog-cell:nth-child(3) { animation-delay: 270ms; }
+.motion-reveal .catalog-cell:nth-child(4) { animation-delay: 325ms; }
+.motion-reveal .catalog-cell:nth-child(n + 5) { animation-delay: 380ms; }
+
+/* 4 · marginal notes assemble quietly alongside the registered folio */
+.motion-reveal .marginalia a {
+  --row-opacity: 1; animation: register-row 480ms var(--ease) both;
+}
+
+.motion-reveal .marginalia a:nth-of-type(1) { animation-delay: 220ms; }
+.motion-reveal .marginalia a:nth-of-type(2) { animation-delay: 265ms; }
+.motion-reveal .marginalia a:nth-of-type(3) { animation-delay: 310ms; }
+.motion-reveal .marginalia a:nth-of-type(4) { animation-delay: 355ms; }
+.motion-reveal .marginalia a:nth-of-type(5) { animation-delay: 400ms; }
+.motion-reveal .marginalia a:nth-of-type(n + 6) { animation-delay: 445ms; }
+.motion-reveal .marginalia a.is-sub { --row-opacity: 0.85; }
+.motion-reveal .toc-inline li { animation: register-row 480ms var(--ease) 220ms both; }
+.motion-reveal .toc-inline li.is-sub { --row-opacity: 0.85; }
+
+/* 5 · a folio number aligns to its baseline by half a pixel */
+@keyframes folio-tick {
+  from { opacity: 0.5; transform: translateY(-0.5px); }
+  to { opacity: 1; transform: none; }
+}
+
+.motion-reveal .file-no,
+.motion-reveal .sec-head-meta {
+  animation: folio-tick 700ms var(--ease) 180ms both;
+}
+
+/* The tiny baseline is drawn once, then remains part of the printed folio. */
+.file-no { position: relative; display: inline-block; }
+.file-no::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: -3px;
+  height: 1px;
+  background: var(--seal);
+  opacity: 0.45;
+  transform-origin: inline-start;
+  pointer-events: none;
+}
+.motion-reveal .file-no::after { animation: draw-rule 700ms var(--ease) 220ms both; }
+
+/* 6 · one restrained pass along the top edge marks a newly mounted route */
+@keyframes route-register {
+  from { opacity: 0.25; transform: scaleX(0.08); }
+  to { opacity: 1; transform: scaleX(1); }
+}
+
+.motion-reveal .panel-top {
+  transform-origin: inline-start;
+  animation: route-register 860ms var(--ease) both;
+}
+
+/* 7 · the seal is pressed once, preserving its original printed rotation */
+@keyframes seal-press {
+  from { scale: 1.004; border-color: var(--rule-2); }
+  to { scale: 1; border-color: var(--seal); }
+}
+
+.motion-reveal .stamp {
+  transform-origin: center; animation: seal-press 700ms var(--ease) 260ms both;
+}
+
+/* 8 · a separate veil drifts without changing light.css's on/off opacity. */
+#light-fallback::after {
+  content: "";
+  position: absolute;
+  inset: -3%;
+  background: radial-gradient(ellipse at 36% 30%, var(--signal), transparent 68%);
+  opacity: 0.012;
+  pointer-events: none;
+}
+
+body:not([data-light="on"]) #light-fallback::after { content: none; }
+
+@keyframes light-drift {
+  from { opacity: 0.008; transform: translate3d(-0.5%, -0.35%, 0); }
+  to { opacity: 0.02; transform: translate3d(1.5%, 1%, 0); }
+}
+
+/* A single LUX clock: the old deep pulse becomes a nearly still live signal. */
+.led { animation: lux-breathe 6s ease-in-out infinite; }
+body[data-light="off"] .led { animation-play-state: paused; }
+
+@keyframes lux-breathe {
+  0%, 100% { opacity: 0.75; }
+  50% { opacity: 1; }
+}
+
+/* Keep full-viewport drift on desktop; touch hairlines never depend on hover. */
+@media (min-width: 861px) {
+  body[data-light="on"] #light-fallback::after { animation: light-drift 32s linear infinite alternate; }
+  .panel::after { animation: grain-drift 36s linear infinite alternate; }
+}
+
+@keyframes grain-drift {
+  from { opacity: 0.04; transform: scale(1.02) translate3d(-0.4%, 0.3%, 0); }
+  to { opacity: 0.045; transform: scale(1.02) translate3d(0.4%, -0.3%, 0); }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .entry::after,
+  .tag-link::after,
+  .password-submit::after {
+    transform: scaleX(1) !important;
+    opacity: 0.28 !important;
+  }
+}
+
+/* ——— reduced motion ———
+   One block. Everything decorative returns to its resting state, and nothing
+   holding content is left invisible. Typography is deliberately excluded: the
+   status strip's tracking is a designed setting, not motion, so nothing here
+   resets letter-spacing. */
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-reveal .entry-list > .entry,
+  .motion-reveal .archive-row,
+  .motion-reveal .friend,
+  .motion-reveal .lead,
+  .motion-reveal .article-catalog,
+  .motion-reveal .article-body,
+  .motion-reveal .sec-head-rule,
+  .motion-reveal .panel-status,
+  .motion-reveal .prose .prose-figure,
+  .motion-reveal .prose blockquote,
+  .motion-reveal .archive-year-line,
+  .motion-reveal .archive-year-arabic,
+  #search-overlay .search-sheet,
+  #search-overlay .search-input,
+  #back-to-top:not([hidden]),
+  .panel-edge,
+  .motion-reveal .article-title,
+  .motion-reveal .sec-head-title,
+  .motion-reveal .catalog-cell,
+  .motion-reveal .marginalia a,
+  .motion-reveal .toc-inline li,
+  .motion-reveal .file-no,
+  .motion-reveal .sec-head-meta,
+  .motion-reveal .panel-top,
+  .motion-reveal .stamp,
+  .led,
+  .signal-divider .node,
+  .motion-reveal .prose h2,
+  .motion-reveal .prose h3,
+  .panel::after {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* preserve the printed seal's resting rotation while cancelling its press */
+  .motion-reveal .stamp {
+    opacity: 0.82 !important;
+    transform: rotate(-2.4deg) !important;
+    scale: 1 !important;
+    border-color: var(--seal) !important;
+  }
+
+  /* pseudo-element decoration has its own resting geometry; never a hidden
+     title, a half-drawn folio, or a parked scroll timeline */
+  .motion-reveal .article-title,
+  .motion-reveal .sec-head-title,
+  .motion-reveal .prose h2,
+  .motion-reveal .prose h3 { clip-path: none !important; }
+  .motion-reveal .file-no::after {
+    animation: none !important;
+    opacity: 0.45 !important;
+    transform: scaleX(1) !important;
+  }
+  .panel::after { opacity: 0.045 !important; }
+  #light-fallback::after { content: none !important; animation: none !important; }
+
+  /* these arrive purely through border colour, so opacity/transform would
+     change nothing: the animation must simply not run */
+  .motion-reveal .prose .prose-figure::after {
+    animation: none !important;
+  }
+
+  /* the sweep is pure decoration with no resting state of its own: hide it
+     rather than parking a clay band at the left edge of the rule */
+  #masthead::after {
+    animation: none !important;
+    opacity: 0 !important;
+    display: none;
+  }
+
+  .entry::after,
+  .entry-no,
+  .entry-side,
+  .tag-link,
+  .password-submit,
+  .prose a {
+    transition: none !important;
+  }
+
+  /* hover fills rest at scaleX(0); with transitions killed they can never
+     creep in, but the rest state is declared anyway so the reduce sheet is
+     self-evidently final */
+  .tag-link::after,
+  .password-submit::after {
+    transform: scaleX(0) !important;
+    opacity: 0 !important;
+  }
+
+  .motion-reveal .prose blockquote {
+    border-inline-start-color: var(--signal) !important;
+  }
+
+  #search-overlay .search-input {
+    border-bottom-color: var(--ink) !important;
+  }
+}

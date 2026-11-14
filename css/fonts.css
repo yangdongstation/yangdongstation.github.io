@@ -1,0 +1,264 @@
+/* Antiphon v2 · typeface choices
+   The masthead's type tab swaps the *Latin voice* only. Every CJK face stays
+   what css/tokens.css declared for the visitor's language, so a Japanese reader
+   keeps Hiragino Mincho and a Chinese reader keeps Songti no matter which tab
+   is active — changing the Latin face cannot damage a mixed 中文/English
+   paragraph, which is the whole reason the stack was split in the first place.
+
+   `body[data-font]` and `body[data-script]` have identical specificity, so the
+   order of the stylesheets decides. This file must load after tokens.css
+   (index.html does that); within it, the two non-serif presets are allowed to
+   override --font-serif outright because they replace the body voice entirely.
+   With no data-font attribute the theme is unchanged — the default is no rules. */
+
+/* ——— humanist: a warmer, more mechanical serif
+   Charter first: it holds up at small text sizes better than Georgia and has
+   the slabby, slightly inked feel this theme's paper wants. Body copy is what
+   this preset exists to change, so --font-serif is re-declared explicitly:
+   setting --font-latin alone would only reach the display face, because the
+   token layer composes --font-serif once, at :root, from the default Latin
+   stack. The CJK tail is the serif one on purpose — Humanist is a serif
+   preset, so Chinese and Japanese keep their Mincho/Song faces. */
+
+body[data-font="humanist"] {
+  --font-latin: "Charter", "Bitstream Charter", "Source Serif 4", "Iowan Old Style",
+    Georgia, "Times New Roman", serif;
+  --font-serif: var(--font-latin), var(--font-cjk), serif;
+  --font-display: "Charter", "Bitstream Charter", "Source Serif 4", Georgia, serif;
+}
+
+/* ——— grotesk: the sans body
+   For readers who want the sheet to feel like a lab report instead of a book.
+   The CJK face has to move with it: pairing Helvetica with Songti reads as a
+   bug, not a choice, so Chinese/Japanese fall to their Gothic faces. */
+
+body[data-font="grotesk"] {
+  --font-latin: "Helvetica Neue", Helvetica, "Inter", "Segoe UI", Arial, sans-serif;
+  --font-serif: var(--font-latin), var(--font-cjk-sans), sans-serif;
+  --font-display: "Helvetica Neue", Helvetica, "Inter", Arial, sans-serif;
+  --font-cjk: var(--font-cjk-sans);
+}
+
+/* ——— mono: the terminal
+   Included because the theme's own register (file numbers, status lines,
+   catalogues) is already monospaced; this turns the body text into the same
+   voice. Deliberately last and deliberate: it is a statement, not a reading
+   default. Long weiqi-style CJK in a Gothic face still legible, which is why
+   --font-cjk-sans is used here too rather than the Serif stack. */
+
+body[data-font="mono"] {
+  --font-latin: "JetBrains Mono", "IBM Plex Mono", ui-monospace, "SFMono-Regular",
+    Menlo, Consolas, monospace;
+  --font-serif: var(--font-latin), var(--font-cjk-sans), monospace;
+  --font-display: var(--font-latin), var(--font-cjk-sans), monospace;
+  --font-cjk: var(--font-cjk-sans);
+}
+
+/* ——— the tab itself ———
+   A compact popover anchored to the masthead action cluster. Rows are ruled like
+   ledger entries rather than raised like buttons: this is a registry of
+   available voices, not a toolbar. */
+
+.masthead-actions {
+  position: relative;
+}
+
+#font-menu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  inset-inline-end: 0;
+  z-index: 70;
+  min-width: 14.5rem;
+  /* A long specimen list would run off the viewport bottom on short screens;
+     cap it and let it scroll. dvh keeps the cap honest when browser chrome
+     collapses. */
+  max-height: min(70vh, 26rem);
+  max-height: min(70dvh, 26rem);
+  overflow-y: auto;
+  padding: 0.7rem 0;
+  background: var(--panel);
+  color: var(--ink);
+  border-top: 1px solid var(--rule-2);
+  border-bottom: 1px solid var(--rule-2);
+  box-shadow: var(--shadow-panel);
+}
+
+/* the popover is a sheet fragment: its left and right edges feather out, so it
+   never reads as a box snapped onto the masthead */
+#font-menu::before,
+#font-menu::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--rule-2);
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 18%, #000 82%, transparent);
+  mask-image: linear-gradient(180deg, transparent, #000 18%, #000 82%, transparent);
+}
+
+#font-menu::before { inset-inline-start: 0; }
+#font-menu::after { inset-inline-end: 0; }
+
+#font-menu[hidden] {
+  display: none;
+}
+
+.font-menu-label {
+  display: block;
+  padding: 0 0.95rem 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--seal);
+}
+
+.font-item {
+  display: grid;
+  grid-template-columns: 1.1rem minmax(0, 1fr);
+  align-items: baseline;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.55rem 0.95rem 0.6rem;
+  border: 0;
+  border-top: 1px solid var(--rule);
+  background: transparent;
+  color: var(--ink-2);
+  text-align: start;
+  cursor: pointer;
+  transition: color var(--dur) var(--ease), background-color var(--dur) var(--ease);
+}
+
+.font-item:first-of-type {
+  border-top: 0;
+}
+
+.font-item:hover {
+  color: var(--ink);
+  background-color: var(--panel-2);
+}
+
+.font-item[aria-checked="true"] {
+  color: var(--ink);
+}
+
+/* the check glyph is always present so the rows do not reflow on selection */
+.font-item-mark {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--signal);
+  opacity: 0;
+}
+
+.font-item[aria-checked="true"] .font-item-mark {
+  opacity: 1;
+}
+
+.font-item-name {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* each row previews its own face in the sample line beneath the label */
+.font-item-sample {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.86rem;
+  letter-spacing: 0;
+  color: var(--muted);
+}
+
+.font-item[aria-checked="true"] .font-item-sample {
+  color: var(--ink-2);
+}
+
+.font-sample-humanist {
+  font-family: "Charter", "Bitstream Charter", "Source Serif 4", Georgia, serif;
+}
+
+.font-sample-grotesk {
+  font-family: "Helvetica Neue", Helvetica, "Inter", Arial, sans-serif;
+}
+
+.font-sample-mono {
+  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+
+.font-sample-antiphon {
+  font-family: var(--font-latin), serif;
+}
+
+/* ——— narrow screens ———
+   The masthead action cluster is tight at 640px; let the popover hang from the
+   right edge but never wider than the sheet's own gutter allows. */
+
+/* ——— language popover ———
+   The locale menu reuses the type menu's rows (.font-item) and label; only its
+   frame is repeated here, because CSS has no way to alias two id selectors. It
+   hangs from the same action cluster, so the same feathering and the same
+   narrow-screen cap apply. `lang()` on each row keeps the endonym in its own
+   face even when it is not the active UI language. */
+
+#lang-menu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  inset-inline-end: 0;
+  z-index: 70;
+  min-width: 13rem;
+  max-height: min(70vh, 30rem);
+  max-height: min(70dvh, 30rem);
+  overflow-y: auto;
+  padding: 0.7rem 0;
+  background: var(--panel);
+  color: var(--ink);
+  border-top: 1px solid var(--rule-2);
+  border-bottom: 1px solid var(--rule-2);
+  box-shadow: var(--shadow-panel);
+}
+
+#lang-menu::before,
+#lang-menu::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--rule-2);
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 18%, #000 82%, transparent);
+  mask-image: linear-gradient(180deg, transparent, #000 18%, #000 82%, transparent);
+}
+
+#lang-menu::before { inset-inline-start: 0; }
+#lang-menu::after { inset-inline-end: 0; }
+
+#lang-menu[hidden] {
+  display: none;
+}
+
+/* the endonym is set in Latin/its own script, never in the mono chrome face:
+   "日本語" set in a tracking-wide uppercase mono is unreadable at 0.66rem */
+#lang-menu .font-item-name {
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+@media (max-width: 640px) {
+  #lang-menu {
+    min-width: 12rem;
+    font-size: 0.95em;
+  }
+}
+
+@media (max-width: 640px) {
+  #font-menu {
+    min-width: 13rem;
+    font-size: 0.95em;
+  }
+}

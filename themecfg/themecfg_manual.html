@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Antiphon · 对经 — 主题配置手册</title>
+<style>
+  /* Palette follows v2's token layer (css/tokens.css): archive paper #F8F6EF on
+     a #EDEAE0 wall, near-black ink, terracotta #C2663C signal, Newsreader for
+     the Latin display face with the Song stack behind it. The manual used to
+     carry the earlier gold-brown / Cormorant identity, which no longer appears
+     anywhere in the theme. */
+  :root { --wall:#EDEAE0; --panel:#F8F6EF; --ink:#15140F; --muted:#726C5E; --rule:#DAD3C2; --seal:#9C3A24; --signal:#C2663C; --link:#A54A2A; }
+  * { box-sizing: border-box; }
+  body { margin:0; padding:2.5rem 1rem; background:var(--wall); color:var(--ink); font:17px/1.8 "Newsreader","Songti SC","Noto Serif SC",serif; }
+  .sheet { max-width: 46rem; margin:0 auto; padding:clamp(1.25rem,4vw,3rem); background:var(--panel); border:1px solid var(--rule); }
+  h1 { margin:0 0 .4rem; font:600 clamp(2rem,5vw,3rem)/1.1 "Newsreader","Songti SC",serif; letter-spacing:.02em; }
+  .sub { margin:0 0 2rem; color:var(--muted); font-style:italic; }
+  h2 { margin:2.2rem 0 .6rem; padding-top:1rem; border-top:1px solid var(--rule); font:600 1.3rem/1.3 "Songti SC",serif; }
+  h2:first-of-type { border-top:0; padding-top:0; }
+  p { margin:.6rem 0; }
+  code { font-family: ui-monospace,Menlo,monospace; font-size:.88em; background:#EEEAE0; padding:.1em .35em; border:1px solid var(--rule); }
+  table { width:100%; border-collapse:collapse; margin:1rem 0; font-size:.92rem; }
+  th,td { text-align:left; padding:.5rem .55rem; border-bottom:1px solid var(--rule); vertical-align:top; }
+  th { font-size:.72rem; letter-spacing:.14em; color:var(--seal); border-bottom-color:var(--signal); }
+  ul { padding-left:1.3rem; }
+  li { margin:.3rem 0; }
+  .note { margin:1.2rem 0; padding:.9rem 1rem; background:#EEEAE0; border-left:3px solid var(--signal); }
+  a { color:var(--link); }
+  .orn { text-align:center; color:var(--signal); margin:1.4rem 0; letter-spacing:.4em; }
+</style>
+</head>
+<body>
+<div class="sheet">
+  <h1>Antiphon · 对经</h1>
+  <p class="sub">BBG v2 主题配置手册 · v2.5.0 · 档案纸 / 陶土信号</p>
+
+  <div class="note">
+    <p><strong>怎么改：</strong>在 BBG 的“配置第三方主题”中编辑 <code>themecfg/themecfg.json</code>，保存后刷新预览。没有写的键使用内置默认值；JSON 写坏时主题退回默认值并在控制台提示。</p>
+    <p><strong>站点设置里不生效的三项：</strong>标题栏背景颜色、标题栏文字颜色、链接颜色；本主题使用自己的版式与色板。链接色请改 <code>外观.链接颜色</code> / <code>外观.链接颜色（暗色）</code>。live2d 也不会加载；需要时用“自定义 JS”。</p>
+  </div>
+
+  <h2>外观</h2>
+  <table>
+    <thead><tr><th>键</th><th>取值</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td><code>默认模式</code></td><td><code>auto</code> / <code>day</code> / <code>night</code></td><td>首次访问的明暗模式；<code>auto</code> 跟随系统。右上角按钮随时切换并记住选择。暗色模式是中性近黑纸面（<code>#110F0C</code>）配暖色强调色，而非咖啡棕。</td></tr>
+      <tr><td><code>链接颜色</code></td><td>CSS 颜色，留空为默认</td><td>亮色模式链接色；建议选深色以保证对比度。</td></tr>
+      <tr><td><code>链接颜色（暗色）</code></td><td>CSS 颜色，留空为默认</td><td>暗色模式链接色；建议选浅色。</td></tr>
+      <tr><td><code>版心宽度（rem）</code></td><td><code>0</code> 或 <code>32..44</code></td><td><code>0</code> 跟随站点语言的默认版心（中文 40rem / 英文 34rem / 日文 38rem）；站点若开“使版心宽度更窄”，三者各减 4rem（36 / 30 / 34）。填 <code>32..44</code> 则在任何语言下强制覆盖。</td></tr>
+      <tr><td><code>首字下沉</code></td><td><code>true</code> / <code>false</code></td><td>中文、日文文章首段首个汉字或假名放大；英文改用更克制的 <code>all-small-caps</code> 起首行，不做下沉。标点开头不下沉（<code>「</code>、<code>，</code>、<code>。</code> 等不触发）。</td></tr>
+      <tr><td><code>显示页边目录</code></td><td><code>true</code> / <code>false</code></td><td>宽屏文章页右侧页边目录；不足 3 个标题时不显示。</td></tr>
+      <tr><td><code>界面使用衬线</code></td><td><code>null</code> / <code>true</code> / <code>false</code></td><td><code>null</code> 跟随站点设置“优先使用衬线字体”；true/false 强制。</td></tr>
+      <tr><td><code>档案标记</code></td><td><code>true</code> / <code>false</code></td><td>文章页标题右上的倾斜“密级”印章；默认 <code>true</code>。</td></tr>
+      <tr><td><code>显示访客编号</code></td><td><code>true</code> / <code>false</code></td><td>页脚显示 <code>访客 0x{id}</code> 一行；编号由 <code>localStorage</code> 记住，默认 <code>true</code>。</td></tr>
+    </tbody>
+  </table>
+
+  <h2>窗光（WebGL）</h2>
+  <table>
+    <thead><tr><th>键</th><th>取值</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td><code>启用</code></td><td><code>true</code> / <code>false</code></td><td>关闭后不创建 WebGL 上下文、不显示灯按钮，也没有 CSS 光晕。</td></tr>
+      <tr><td><code>强度</code></td><td><code>0..1</code></td><td>光束、尘埃与暗角的总体透明度；默认 0.55。</td></tr>
+      <tr><td><code>粒子密度</code></td><td><code>0..1</code></td><td>尘埃微粒密度；默认 0.5。</td></tr>
+      <tr><td><code>帧率上限</code></td><td><code>30</code> / <code>45</code> / <code>60</code></td><td>越低越省电；其他值按 60。</td></tr>
+      <tr><td><code>默认开启</code></td><td><code>true</code> / <code>false</code></td><td>首次访问是否亮灯；右上角灯按钮可切换并记住。</td></tr>
+    </tbody>
+  </table>
+  <p>低电量设备建议：<code>强度 0.3</code>、<code>帧率上限 30</code>。<code>prefers-reduced-motion</code> 下只渲染静止一帧（切换日/夜会重绘这一帧，不会启动动画循环），且仍尊重 <code>默认开启</code> 与访客的灯按钮选择；WebGL 不可用时自动退回 CSS 光晕，正文不受影响。</p>
+
+  <h2>阅读</h2>
+  <ul>
+    <li><code>显示阅读时长</code>：<code>true</code>/<code>false</code>，文章头显示“约 N 分钟”。</li>
+  </ul>
+
+  <h2>界面语言（<code>网站语言</code>）</h2>
+  <p>本主题自带 11 套界面文本：<code>zh-Hans</code>（简体中文）、<code>zh-Hant</code>（繁體中文）、<code>ja</code>（日本語）、<code>en</code>（English）、<code>ko</code>（한국어）、<code>pt</code>（Português）、<code>es</code>（Español）、<code>fr</code>（Français）、<code>de</code>（Deutsch）、<code>ru</code>（Русский）、<code>ar</code>（العربية，从右到左）。同一套注册表同时决定界面文字、<code>&lt;html lang&gt;</code>、文字方向与排版标度，因此新增语言不会出现“文字换了但版心没换”的错位。</p>
+  <p><code>网站语言</code> 接受三类写法，大小写与下划线不敏感（<code>zh_CN</code>、<code>ZH-CN</code> 等价）：</p>
+  <table>
+    <thead><tr><th>写法</th><th>示例</th><th>结果</th></tr></thead>
+    <tbody>
+      <tr><td>标准 BCP-47 标签</td><td><code>zh-Hans</code>、<code>pt-BR</code>、<code>de-AT</code></td><td>最长前缀匹配；<code>pt-BR</code> → <code>pt</code>，<code>de-AT</code> → <code>de</code>。</td></tr>
+      <tr><td>BBG 旧版语言名</td><td><code>简体中文</code>、<code>繁體中文</code>、<code>日本語</code>、<code>English</code>、<code>한국어</code>、<code>Русский</code>、<code>العربية</code></td><td>经别名表映射到对应标签，旧站点无需改动。</td></tr>
+      <tr><td>英文语言名与短码</td><td><code>chinese</code>、<code>japanese</code>、<code>english</code>、<code>zh</code>、<code>jp</code>、<code>chs</code>、<code>cht</code></td><td>同样走别名表；<code>zh-HK</code>/<code>zh-TW</code>/<code>zh-MO</code> 归为 <code>zh-Hant</code>。</td></tr>
+      <tr><td><code>auto</code> / 留空</td><td><code>auto</code>、<code>自动</code>、<code>跟随系统</code>、空字符串</td><td>交给浏览器：依次尝试 <code>navigator.languages</code>、<code>navigator.language</code>。</td></tr>
+    </tbody>
+  </table>
+  <div class="note">
+    <p><strong>无法确定时为 English：</strong>当语言完全无法判定（标签无法识别、<code>localStorage</code> 损坏、<code>auto</code> 且浏览器语言不在支持列表内），主题显示英文 <code>en</code>，而不是中文。完整回退链为：<code>localStorage['antiphon:lang']</code>（非 <code>auto</code>）→ <code>网站语言</code>（非空且非 <code>auto</code>）→ 浏览器语言 → <code>en</code>。字符串级别同理：当前语言包 → （仅繁体中文时）简体中文包 → <code>en</code> → 原始键名。除繁体中文外，任何语言缺失字符串都不会回退到中文。</p>
+  </div>
+  <p>读者可在右上角地球图标中自行切换；选择写入 <code>localStorage['antiphon:lang']</code> 并优先于 <code>网站语言</code>，选“跟随系统”会清除该键。<code>auto</code> 那一行会附带显示当前实际解析到的语言，便于确认自动结果。日期、月份与数字均按解析到的语言用 <code>Intl</code> 格式化（<code>zh-Hans</code>/<code>zh-Hant</code> 由浏览器原生 CLDR 数据区分，无需再映射到 <code>zh-CN</code>/<code>zh-TW</code>）。</p>
+  <p>评论组件会把解析到的标签传给 Valine / Waline / Rustaline / Disqus；仅中文会被改写成 <code>zh-CN</code> 或 <code>zh-TW</code>，其余标签原样传递。</p>
+
+  <h2>字体预设（<code>字体</code>）</h2>
+  <p>右上角“字体”图标提供四套预设，选择存入 <code>localStorage['antiphon:font']</code>，与界面语言相互独立。每套预设只替换拉丁字面，CJK、谚文与阿拉伯文的回退字族始终保留，因此不会出现中文掉字。</p>
+  <table>
+    <thead><tr><th>预设</th><th>id</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td>Antiphon</td><td><code>antiphon</code></td><td>默认。Newsreader 衬线正文配宋体，主题原本的“档案纸”声音。</td></tr>
+      <tr><td>Humanist</td><td><code>humanist</code></td><td>更温润的书版字面，适合长文阅读。</td></tr>
+      <tr><td>Grotesk</td><td><code>grotesk</code></td><td>无衬线报告体，界面文字更接近实验记录。</td></tr>
+      <tr><td>Mono</td><td><code>mono</code></td><td>全站等宽，正文也使用终端字面。</td></tr>
+    </tbody>
+  </table>
+
+  <h2>未在 <code>themecfg.json</code> 中暴露的站点设置键</h2>
+  <p>以下键由本站设置或文章元数据提供，不在主题配置文件中；此处列出以便排查：<code>网站语言</code>、<code>博客标题</code>、<code>博客描述（副标题）</code>、<code>网站域名（包括https://）</code>、<code>启用网站公告</code> / <code>网站公告</code> / <code>网站公告仅在首页显示</code>、<code>启用内建友人帐页面</code>、<code>在菜单中添加归档和标签的入口</code>、<code>全局评论设置</code>、<code>自定义界面文本</code>、<code>静态资源</code>、<code>插件列表</code>。</p>
+  <p>反之，<code>themecfg.json</code> 中的键全部有效。早期版本把 <code>外观.档案标记</code> 与 <code>外观.显示访客编号</code> 留在了代码里而没有写进默认文件，导致手册与默认文件各说一套；现在两者都已写入 <code>themecfg.json</code>，默认值均为 <code>true</code>，改这里即可关闭。</p>
+
+  <h2>可覆盖的界面文本键</h2>
+  <p>在站点设置“自定义界面文本”中启用并添加 <code>key/value</code>，可覆盖：<code>NAV_ARTICLES</code>、<code>NAV_ARCHIVE</code>、<code>NAV_FRIENDS</code>、<code>SEARCH</code>、<code>SEARCH_PLACEHOLDER</code>、<code>NO_RESULTS</code>、<code>PINNED</code>、<code>PAGE_PREV</code>、<code>PAGE_NEXT</code>、<code>READ_TIME</code>、<code>REVISED</code>、<code>PREV</code>、<code>NEXT</code>、<code>REFERENCES</code>、<code>INFO</code>、<code>WARNING</code>、<code>DANGER</code>、<code>SUCCESS</code>、<code>COMMENTS</code>、<code>COMMENTS_UNAVAILABLE</code>、<code>COMMENTS_LOAD_FAILED</code>、<code>COMMENTS_PREVIEW</code>、<code>LICENSE</code>、<code>DOWNLOAD</code>、<code>COPY</code>、<code>COPY_CODE</code>、<code>COPIED</code>、<code>COPY_FAILED</code>、<code>SHARE</code>、<code>LINK_COPIED</code>、<code>NOT_FOUND</code>、<code>PASSWORD_PROMPT</code>、<code>PASSWORD_SUBMIT</code>、<code>PASSWORD_WRONG</code>、<code>LIGHT_ON</code>、<code>LIGHT_OFF</code>、<code>THEME_DAY</code>、<code>THEME_NIGHT</code>、<code>TOC</code>、<code>BACK_TO_TOP</code>、<code>ANNOUNCEMENT</code>、<code>LOADING</code>、<code>LOAD_ERROR</code>、<code>MINUTES</code>、<code>EMPTY</code>、<code>TAG_TITLE</code>、<code>CLOSE</code>、<code>LANG_LABEL</code>、<code>LANG_AUTO</code>、<code>LANG_AUTO_NOW</code>、<code>FONT_LABEL</code>、<code>NAV_LABEL</code>、<code>PAGINATION_LABEL</code>、<code>ARTICLE_NAV_LABEL</code>、<code>SKIP_TO_CONTENT</code>、<code>HEAD_INDEX</code>、<code>HEAD_ARCHIVE</code>、<code>HEAD_TAGS</code>、<code>HEAD_TOPIC</code>、<code>FOOTER_CREDIT</code>、<code>SYS_STATUS</code>、<code>SYS_PROTOCOL</code>、<code>SYS_BOOT</code>、<code>FEATURED_FILE</code>、<code>ACCEDE</code>、<code>SEALED</code>、<code>DISCUSSION_OPEN</code>、<code>CLASSIFIED</code>、<code>UNFILED</code>、<code>STANDING_PAGE</code>、<code>FILE_LABEL</code>、<code>FILE_NO</code>、<code>FILE_RECORD</code>、<code>ENTRY_NO</code>、<code>CAT_RECORDED</code>、<code>CAT_EXTENT</code>、<code>CAT_SECTIONS</code>、<code>RUBRIC</code>、<code>MARGINALIA</code>、<code>RECORD_NOT_FOUND</code>、<code>RETURN_TO_INDEX</code>、<code>SEARCH_EYEBROW</code>、<code>VISITOR</code>、<code>ATOM_FEED</code>、<code>COLOPHON</code>、<code>CLASS_INDEX</code>、<code>CLASS_ARCHIVE</code>、<code>CLASS_RECORD</code>、<code>CLASS_AFFILIATES</code>、<code>CLASS_MISSING</code>、<code>ARCHIVE_YEARS</code>、<code>TAG_SUBJECTS</code>、<code>FONT_SAMPLE_ANTIPHON</code>、<code>FONT_SAMPLE_HUMANIST</code>、<code>FONT_SAMPLE_GROTESK</code>、<code>FONT_SAMPLE_MONO</code>。</p>
+  <p>带占位符的键必须保留花括号，否则替换会失败：<code>READ_TIME</code> 用 <code>{n}</code>，<code>TAG_TITLE</code> 用 <code>{tag}</code>，<code>FILE_NO</code>/<code>FILE_RECORD</code>/<code>ENTRY_NO</code> 用 <code>{n}</code>，<code>VISITOR</code> 用 <code>{id}</code>，<code>LANG_AUTO_NOW</code> 用 <code>{name}</code>，<code>ARCHIVE_YEARS</code>/<code>TAG_SUBJECTS</code> 用 <code>{n}</code>。</p>
+
+  <h2>多语言</h2>
+  <p>主题界面文案（导航、分区标题、日期、分页、页脚等）随界面语言在 11 种语言之间切换：<code>zh-Hans</code>、<code>zh-Hant</code>、<code>ja</code>、<code>en</code>、<code>ko</code>、<code>pt</code>、<code>es</code>、<code>fr</code>、<code>de</code>、<code>ru</code>、<code>ar</code>。界面语言按「访客选择 → 站点设置 <code>网站语言</code> → 系统语言 → <code>en</code>」的顺序解析；<code>网站语言</code> 留空或填 <code>auto</code> 表示交给系统。阿拉伯语会自动切换为 RTL 排版。</p>
+  <p><strong>文章与页面的正文不翻译。</strong>正文是作者用自己语言写的内容，主题不会、也不应该改写它；切换语言只影响界面，正文照原样显示。</p>
+  <p>如果希望文章标题、摘要等<em>元数据</em>也跟随语言，可在站点内放置可选的 <code>data/i18n.json</code>，其结构与站点配置同形、按语言分块：</p>
+  <p><code>{ "en": { "博客标题": "Antiphon", "文章列表": [{ "文件名": "08-psalm.md", "文章标题": "Psalm", "摘要": "…" }] } }</code></p>
+  <p>支持翻译的字段：<code>博客标题</code>、<code>博客描述（副标题）</code>、<code>网站公告</code>、<code>底部信息（格式为markdown）</code>、<code>全站内容授权说明</code>、<code>友人帐页面附加信息</code>、<code>菜单中的外部链接</code>、<code>页面列表</code>、<code>文章列表</code>、<code>标签名称</code>、<code>友人帐</code>。解析顺序为「当前语言 → <code>en</code> → 原文」，未提供的字段一律回落到原文，因此不写这个文件的行为与从前完全一致。</p>
+
+  <div class="orn">❦</div>
+  <p class="sub">Antiphon · 对经 · BBG v2 · 兼容 BBG 20261001</p>
+</div>
+</body>
+</html>
